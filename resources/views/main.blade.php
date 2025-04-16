@@ -50,9 +50,9 @@
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center space-x-3">
         <div class="flex items-center justify-center h-12 w-12">
-            <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo" class="h-10 w-auto rounded-full" />
+            <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo" class="h-10 w-auto" />
         </div>
-        <span class="font-bold text-2xl text-indigo-700">SiCekam</span>
+        <span class="font-bold text-2xl">SiCekam</span>
       </div>
 
       <div class="hidden md:flex space-x-10 items-center font-medium">
@@ -101,7 +101,7 @@
     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-40"></div>
     <div class="absolute bottom-0 left-0 w-full p-6 md:p-12 text-white">
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2"><span class="text-indigo-600 shadow">Monitoring</span>Kandang Ayam</h2>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">Monitoring Kandang Ayam</h2>
         <p class="text-lg md:text-xl opacity-90 max-w-2xl">Solusi teknologi terdepan untuk memudahkan peternak</p>
       </div>
     </div>
@@ -128,7 +128,7 @@
         </div>
       </div>
 
-      <div class="content-card rounded-xl p-8 shadow">
+      <div class="content-card rounded-xl p-8 shadow transform transition hover:-translate-y-1">
         <h3 class="text-2xl font-bold text-gray-900 mb-6">Manfaat Utama</h3>
 
         <div class="space-y-4">
@@ -215,7 +215,7 @@
       </div>
     </div>
     <div class="mt-16 text-center">
-      <a href="#" class="gradient inline-block text-white font-medium text-lg px-8 py-4 rounded-full hover:opacity-90 transition">
+      <a href="https://wa.me/6282332061664" class="gradient inline-block text-white font-medium text-lg px-8 py-4 rounded-full hover:opacity-90 transition">
         Hubungi Kami
       </a>
     </div>
