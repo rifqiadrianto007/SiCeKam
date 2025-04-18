@@ -67,7 +67,8 @@
       </div>
 
       <div class="hidden md:flex items-center space-x-4">
-        <a href="#" class="gradient text-white px-5 py-2 rounded-lg font-medium hover:opacity-90 transition">Sign In</a>
+        <a href="#" class="bg-red-600 text-white px-3 py-1 rounded-lg font-medium hover:opacity-90 transition"
+        onclick="window.location.href='{{ route('login') }}'">Logout</a>
       </div>
 
       <!-- Mobile menu button -->
@@ -86,8 +87,7 @@
       <div class="flex flex-col space-y-3 px-2 pt-2 pb-3">
         <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md">Home</a>
         <a href="#fitur" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md">Fitur</a>
-        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md">Masuk</a>
-        <a href="#" class="block gradient text-white px-3 py-2 text-base font-medium rounded-md">Daftar Sekarang</a>
+        <a href="{{ route("login") }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-red-600 hover:bg-gray-50 rounded-md">Logout</a>
       </div>
     </div>
   </div>
@@ -185,7 +185,7 @@
           <p class="text-gray-600 mb-6">
             Dengan teknologi computer vision yang canggih, cukup ambil foto kandang dan sistem akan menghitung jumlah ayam secara otomatis dengan akurasi tinggi.
           </p>
-          <a href="#" class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group">
+          <a href="{{ route('scan') }}" class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group">
             <span>Coba Fitur Ini</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform transition group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -205,7 +205,7 @@
           <p class="text-gray-600 mb-6">
             Sistem cerdas yang dapat mendeteksi dan menganalisis kondisi kesehatan ayam berdasarkan ciri fisik yang terlihat pada foto, membantu mencegah penyebaran penyakit.
           </p>
-          <a href="#" class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group">
+          <a href="{{ route('penyakit') }}" class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group">
             <span>Coba Fitur Ini</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform transition group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
