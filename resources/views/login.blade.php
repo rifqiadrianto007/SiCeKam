@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Sistem Cek Kandang Ayam - Login Page">
-  <title>SiCekam - Login</title>
+  <title>SiCekam</title>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <style>
     .gradient {
@@ -80,7 +80,7 @@
         </form>
 
         <footer class="mt-6 text-center text-sm text-white/80">
-          Belum punya akun? <a href="#" class="font-medium text-white hover:text-white/80 transition hover:underline focus:outline-none focus:underline">Registrasi</a>
+          Belum punya akun? <a href="{{ ("register") }}" class="font-medium text-white hover:text-white/80 transition hover:underline focus:outline-none focus:underline">Registrasi</a>
         </footer>
       </div>
     </div>
