@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiCekam</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
+  <title>SiCekam</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
@@ -17,7 +19,7 @@
             <div class="overflow-y-auto overflow-x-hidden flex-grow">
                 <ul class="flex flex-col space-y-1 py-4">
                     <li>
-                        <a href="dashboard.html" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6">
+                        <a href="{{ route('admin') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('admin') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-tachometer-alt"></i>
                             </span>
@@ -25,27 +27,33 @@
                         </a>
                     </li>
                     <li>
-                        <a href="blok-kandang.html" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 active-nav border-blue-500 bg-indigo-400">
+                        <a href="{{ route('ayam') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('ayam*') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-warehouse"></i>
                             </span>
-                            <span class="ml-2 text-sm tracking-wide truncate text-white">Blok Kandang</span>
+                            <span class="ml-2 text-sm tracking-wide truncate text-white">
+                                Blok Kandang
+                            </span>
                         </a>
                     </li>
                     <li>
-                        <a href="pengguna.html" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6">
+                        <a href="{{ route('akun') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('akun*') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-users-cog"></i>
                             </span>
-                            <span class="ml-2 text-sm tracking-wide truncate text-white">Manajemen Pengguna</span>
+                            <span class="ml-2 text-sm tracking-wide truncate text-white">
+                                Manajemen Pengguna
+                            </span>
                         </a>
                     </li>
                     <li class="mt-auto">
-                        <a href="login.html" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6">
+                        <a href="{{ route('login') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-sign-out-alt"></i>
                             </span>
-                            <span class="ml-2 text-sm tracking-wide truncate text-white">Keluar</span>
+                            <span class="ml-2 text-sm tracking-wide truncate text-white">
+                                Keluar
+                            </span>
                         </a>
                     </li>
                 </ul>
