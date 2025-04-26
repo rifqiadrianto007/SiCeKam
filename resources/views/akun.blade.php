@@ -119,7 +119,7 @@
     </div>
 
     <!-- Modal Edit Pengguna -->
-    <div id="modalPengguna" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+    <div id="modalPengguna" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
         <div class="bg-white rounded-lg shadow-lg w-full max-w-md">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-4">
@@ -157,7 +157,7 @@
     </div>
 
     <!-- Konfirmasi Hapus -->
-    <div id="modalKonfirmasi" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+    <div id="modalKonfirmasi" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
         <div class="bg-white rounded-lg shadow-lg w-full max-w-sm">
             <div class="p-6">
                 <h3 class="text-lg font-medium text-gray-900 mb-3">Konfirmasi Hapus</h3>
