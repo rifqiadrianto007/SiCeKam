@@ -90,47 +90,51 @@
                 </div>
             </div>
 
+{{-- BAGIAN AI KEBAWAH PENTING --}}
             <div class="bg-white rounded-xl shadow-md overflow-hidden mb-4">
-                <div class="p-8" id="upload-section">
-                    <div class="file-input-area rounded-2xl p-10 text-center cursor-pointer" id="drop-area">
-                        <input type="file" id="file-upload" class="hidden" accept="image/*">
-                        <label for="file-upload" class="block cursor-pointer">
-                            <div class="mx-auto mb-6 w-24 h-24 rounded-full bg-indigo-100 flex items-center justify-center">
-                                <i class="fas fa-cloud-upload-alt text-primary text-4xl"></i>
+                <form id="scan-form" action="{{ route('scan.post') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="p-8" id="upload-section">
+                        <div class="file-input-area rounded-2xl p-10 text-center cursor-pointer" id="drop-area">
+                            <input type="file" name="image" id="file-upload" class="hidden" accept="image/*" required>
+                            <label for="file-upload" class="block cursor-pointer">
+                                <div class="mx-auto mb-6 w-24 h-24 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-cloud-upload-alt text-primary text-4xl"></i>
+                                </div>
+
+                                <h3 class="text-xl font-semibold text-gray-800 mb-4">Upload Foto</h3>
+
+                                <div class="flex justify-center space-x-4">
+                                    <button type="button" id="open-camera-btn" class="px-6 py-2 rounded-lg border-2 border-primary text-primary text-base font-medium hover:bg-primary hover:text-gray-400 transition">
+                                        <i class="fas fa-camera mr-2"></i> Ambil Foto
+                                    </button>
+                                    <button type="button" onclick="document.getElementById('file-upload').click()" class="px-6 py-2 rounded-lg border-2 border-primary text-primary text-base font-medium hover:bg-primary hover:text-gray-400 transition">
+                                        <i class="fas fa-folder-open mr-2"></i> Pilih dari Galeri
+                                    </button>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div id="preview-container" class="hidden mt-6">
+                            <h4 class="text-lg font-medium text-gray-800 mb-4">Pratinjau Foto</h4>
+
+                            <div class="bg-gray-100 rounded-xl p-2">
+                                <div class="relative rounded-lg overflow-hidden">
+                                    <img id="image-preview" class="w-full h-auto max-h-96 object-contain" src="#" alt="Preview">
+                                    <button id="remove-btn" type="button" onclick="removeImage()" class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full text-sm">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
                             </div>
 
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Upload Foto</h3>
-
-                            <div class="flex justify-center space-x-4">
-                                <button id="open-camera-btn" class="px-6 py-2 rounded-lg border-2 border-primary text-primary text-base font-medium hover:bg-primary hover:text-gray-400 transition">
-                                    <i class="fas fa-camera mr-2"></i> Ambil Foto
-                                </button>
-                                <button onclick="document.getElementById('file-upload').click()" class="px-6 py-2 rounded-lg border-2 border-primary text-primary text-base font-medium hover:bg-primary hover:text-gray-400 transition">
-                                    <i class="fas fa-folder-open mr-2"></i> Pilih dari Galeri
-                                </button>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div id="preview-container" class="hidden mt-6">
-                        <h4 class="text-lg font-medium text-gray-800 mb-4">Pratinjau Foto</h4>
-
-                        <div class="bg-gray-100 rounded-xl p-2">
-                            <div class="relative rounded-lg overflow-hidden">
-                                <img id="image-preview" class="w-full h-auto max-h-96 object-contain" src="#" alt="Preview">
-                                <button id="remove-btn" onclick="removeImage()" class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full text-sm">
-                                    <i class="fas fa-times"></i>
+                            <div class="mt-6">
+                                <button type="button" id="scan-btn" class="w-full gradient text-white font-medium py-3 px-6 rounded-xl hover:opacity-90 transition flex items-center justify-center text-base">
+                                    <i class="fas fa-search mr-2 text-lg"></i>Scan
                                 </button>
                             </div>
                         </div>
-
-                        <div class="mt-6">
-                            <button id="scan-btn" class="w-full gradient text-white font-medium py-3 px-6 rounded-xl hover:opacity-90 transition flex items-center justify-center text-base">
-                                <i class="fas fa-search mr-2 text-lg"></i>Scan
-                            </button>
-                        </div>
                     </div>
-                </div>
+                </form>
 
                 <div id="loading-section" class="hidden p-6 text-center">
                     <div class="mx-auto w-12 h-12 border-4 border-gray-200 border-t-primary rounded-full animate-spin mb-4"></div>
@@ -161,11 +165,12 @@
                                             </div>
                                             <div>
                                                 <p class="text-xs text-gray-500">Jumlah Ayam Terdeteksi</p>
-                                                <p class="text-xl font-bold text-gray-900">289</p>
+                                                <p id="jumlah-ayam" class="text-xl font-bold text-gray-900">0</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+{{-- SAMPAI SINI --}}
 
                                 <button onclick="resetProcess()" class="w-full py-2 px-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center justify-center text-sm font-medium">
                                     <i class="fas fa-redo mr-2"></i> Scan Foto Baru
@@ -226,6 +231,51 @@
         const openCameraBtn = document.getElementById('open-camera-btn');
         const closeCameraBtn = document.getElementById('close-camera-btn');
         const captureBtn = document.getElementById('capture-btn');
+
+// BAGIAN AI KEBAWAH PENTING
+        document.getElementById('scan-btn').addEventListener('click', uploadToFlaskAPI);
+
+        async function uploadToFlaskAPI() {
+            const fileInput = document.getElementById('file-upload');
+            if (!fileInput.files.length) {
+                alert('Silakan pilih gambar terlebih dahulu.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('image', file);
+
+            try {
+                const response = await fetch('http://localhost:5000/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                console.log('Hasil dari Flask:', data);
+
+                if (data.success) {
+                    document.getElementById('image-preview').src = data.image;
+                    document.getElementById('jumlah-ayam').src = data.results;
+
+                    // Hitung jumlah ayam dari hasil deteksi (jumlah elemen boxes)
+                    const hasilDeteksi = JSON.parse(data.results);
+                    const jumlahAyam = hasilDeteksi.length;
+
+                    // Tampilkan jumlah ayam
+                    document.getElementById('jumlah-ayam').textContent = jumlahAyam;
+
+                //     alert(`Deteksi berhasil! Jumlah ayam terdeteksi: ${jumlahAyam}`);
+                // } else {
+                //     alert('Deteksi gagal: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Gagal mengirim ke API Flask:', error);
+                alert('Terjadi kesalahan saat menghubungi server Flask.');
+            }
+        }
+// SAMPAI SINI
 
         // Open camera
         openCameraBtn.addEventListener('click', async function() {
