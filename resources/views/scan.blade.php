@@ -45,10 +45,27 @@
             border-radius: 0.5rem;
             overflow: hidden;
         }
+        .class-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            background-color: #f3f4f6;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .class-btn:hover {
+            background-color: #e0e7ff;
+        }
+        .class-btn.selected {
+            background-color: #6366f1;
+            color: white;
+        }
+        #deteksi-section {
+            display: none;
+        }
     </style>
 </head>
 <body class="h-full bg-gray-50 flex flex-col">
-    <div class="bg-white shadow-sm py-4 px-6">
+    <div class="bg-white shadow-sm py-4 px-6 sticky top-0 z-10">
         <div class="flex items-center justify-between">
             <button onclick="window.history.back()" class="text-gray-600 hover:text-primary flex-shrink-0">
                 <i class="fas fa-arrow-left mr-1"></i> Kembali
@@ -58,7 +75,27 @@
         </div>
     </div>
 
-    <div class="content-container flex-1 py-10 overflow-auto">
+    {{-- Halaman Pemilihan Blok --}}
+    <div id="class-selection" class="h-full w-full flex flex-col justify-center items-center p-6 bg-gray-50">
+        <h1 class="text-2xl font-bold mb-6">Pilih Kelas Kandang</h1>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
+            <!-- Tombol kelas A1 - A10 -->
+            <button onclick="selectClass('A1')" class="class-btn">A1</button>
+            <button onclick="selectClass('A2')" class="class-btn">A2</button>
+            <button onclick="selectClass('A3')" class="class-btn">A3</button>
+            <button onclick="selectClass('A4')" class="class-btn">A4</button>
+            <button onclick="selectClass('A5')" class="class-btn">A5</button>
+            <button onclick="selectClass('A6')" class="class-btn">A6</button>
+            <button onclick="selectClass('A7')" class="class-btn">A7</button>
+            <button onclick="selectClass('A8')" class="class-btn">A8</button>
+            <button onclick="selectClass('A9')" class="class-btn">A9</button>
+            <button onclick="selectClass('A10')" class="class-btn">A10</button>
+        </div>
+        <button id="lanjut-btn" class="bg-primary text-indigo-500 font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition disabled:opacity-50" disabled>Lanjutkan</button>
+    </div>
+
+    {{-- Halaman Scan Penyakit --}}
+    <div class="content-container flex-1 py-10 overflow-auto" id="deteksi-section">
         <div class="max-w-3xl mx-auto">
             <div class="p-4 mb-4">
                 <div class="flex items-center justify-between">
@@ -209,6 +246,7 @@
         // Variables
         let currentImageRotation = 0;
         let stream = null;
+        let selectedClass = null;
         const fileUpload = document.getElementById('file-upload');
         const dropArea = document.getElementById('drop-area');
         const previewContainer = document.getElementById('preview-container');
@@ -226,6 +264,35 @@
         const openCameraBtn = document.getElementById('open-camera-btn');
         const closeCameraBtn = document.getElementById('close-camera-btn');
         const captureBtn = document.getElementById('capture-btn');
+        const lanjutBtn = document.getElementById('lanjut-btn');
+        const classSelection = document.getElementById('class-selection');
+        const deteksiSection = document.getElementById('deteksi-section');
+
+        // Pemilihan kelas
+        function selectClass(className) {
+            selectedClass = className;
+            lanjutBtn.disabled = false;
+
+            // Reset semua tombol kelas
+            document.querySelectorAll('.class-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            // Highlight tombol yang dipilih
+            const clickedBtn = event.currentTarget;
+            clickedBtn.classList.add('selected');
+
+            console.log("Kelas yang dipilih:", className);
+        }
+
+        // Event untuk tombol lanjutkan
+        lanjutBtn.addEventListener('click', () => {
+            if (selectedClass) {
+                classSelection.style.display = 'none';
+                deteksiSection.style.display = 'block';
+                deteksiSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
 
         // Open camera
         openCameraBtn.addEventListener('click', async function() {

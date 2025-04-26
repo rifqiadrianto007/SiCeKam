@@ -27,3 +27,15 @@ Route::get('/scan', function () {
 Route::get('/penyakit', function () {
     return view('penyakit');
 })->name('penyakit');
+
+Route::get('/admin', function () {
+    return view('admin');
+})->name('admin');
+
+Route::get('/ayam', function () {
+    return view('ayam');
+})->name('ayam');
+
+Route::get('/akun', function () {
+    return view('akun');
+})->name('akun');
