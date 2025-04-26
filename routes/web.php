@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ScanController;
 
 Route::get('/', function () {
     return view('login');
@@ -11,11 +11,6 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-// Route::post('/logout', function() {
-//     Auth::logout();
-//     return redirect()->route('login');
-// })->name('logout');
-
 Route::get('/main', function () {
     return view('main');
 })->name('main');
@@ -23,6 +18,8 @@ Route::get('/main', function () {
 Route::get('/scan', function () {
     return view('scan');
 })->name('scan');
+
+Route::post('/scan', [ScanController::class, 'store'])->name('scan.post');
 
 Route::get('/penyakit', function () {
     return view('penyakit');
