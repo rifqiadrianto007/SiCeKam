@@ -39,6 +39,7 @@
                                     <th class="py-3 px-4 text-left text-sm font-medium text-gray-500 uppercase">Nama Blok</th>
                                     <th class="py-3 px-4 text-left text-sm font-medium text-gray-500 uppercase">Jumlah Ayam</th>
                                     <th class="py-3 px-4 text-left text-sm font-medium text-gray-500 uppercase">Kapasitas</th>
+                                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-500 uppercase">Hasil Scan</th>
                                     <th class="py-3 px-4 text-left text-sm font-medium text-gray-500 uppercase">Status</th>
                                     <th class="py-3 px-4 text-left text-sm font-medium text-gray-500 uppercase">Aksi</th>
                                 </tr>
@@ -95,6 +96,11 @@
                     <div class="mb-4">
                         <label for="kapasitas" class="block text-sm font-medium text-gray-700 mb-1">Kapasitas</label>
                         <input type="number" id="kapasitas" class="w-full px-3 py-2 border border-gray-300 rounded-md" min="1" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="scan" class="block text-sm font-medium text-gray-700 mb-1">Hasil Scan</label>
+                        <input type="number" id="scan" class="w-full px-3 py-2 border border-gray-300 rounded-md" min="0" required>
                     </div>
 
                     <div class="mb-4">

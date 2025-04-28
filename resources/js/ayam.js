@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Data awal blok kandang
     let dataBlok = [
-        { id: 1, nama: 'Blok A', jumlah: 1250, kapasitas: 1500, status: 'Aktif' },
-        { id: 2, nama: 'Blok B', jumlah: 1050, kapasitas: 1200, status: 'Aktif' },
-        { id: 3, nama: 'Blok C', jumlah: 1500, kapasitas: 1500, status: 'Aktif' },
-        { id: 4, nama: 'Blok D', jumlah: 850, kapasitas: 1000, status: 'Aktif' },
-        { id: 5, nama: 'Blok E', jumlah: 1150, kapasitas: 1300, status: 'Aktif' }
+        { id: 1, nama: 'Blok A', jumlah: 1250, kapasitas: 1500, scan: 300, status: 'Aktif' },
+        { id: 2, nama: 'Blok B', jumlah: 1050, kapasitas: 1200, scan: 300, status: 'Aktif' },
+        { id: 3, nama: 'Blok C', jumlah: 1500, kapasitas: 1500, scan: 300, status: 'Aktif' },
+        { id: 4, nama: 'Blok D', jumlah: 850, kapasitas: 1000, scan: 300, status: 'Aktif' },
+        { id: 5, nama: 'Blok E', jumlah: 1150, kapasitas: 1300, scan: 300, status: 'Aktif' }
     ];
 
     // Elements
@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const namaBlok = document.getElementById('namaBlok');
     const jumlahAyam = document.getElementById('jumlahAyam');
     const kapasitas = document.getElementById('kapasitas');
+    const hasilScan = document.getElementById('scan');
     const statusBlok = document.getElementById('statusBlok');
     const btnTambahBlok = document.getElementById('btnTambahBlok');
     const btnCloseModal = document.getElementById('btnCloseModal');
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="text-xs text-gray-500">${utilization}%</span>
                     </div>
                 </td>
+                <td class="py-4 px-4">${blok.scan} ekor</td>
                 <td class="py-4 px-4">
                     <span class="px-2 py-1 rounded-full text-xs ${statusClass}">
                         ${blok.status}
@@ -119,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             namaBlok.value = blok.nama;
             jumlahAyam.value = blok.jumlah;
             kapasitas.value = blok.kapasitas;
+            hasilScan.value = blok.scan;
             statusBlok.value = blok.status;
 
             modalBlok.classList.remove('hidden');
@@ -156,17 +159,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const nama = namaBlok.value;
         const jumlah = parseInt(jumlahAyam.value);
         const kap = parseInt(kapasitas.value);
+        const scanValue = parseInt(hasilScan.value);
         const status = statusBlok.value;
 
         if (blokId.value) {
             // Edit existing
             const index = dataBlok.findIndex(b => b.id === parseInt(blokId.value));
             if (index !== -1) {
-                dataBlok[index] = { id, nama, jumlah, kapasitas: kap, status };
+                dataBlok[index] = { id, nama, jumlah, kapasitas: kap, scan: scanValue, status };
             }
         } else {
             // Add new
-            dataBlok.push({ id, nama, jumlah, kapasitas: kap, status });
+            dataBlok.push({ id, nama, jumlah, kapasitas: kap, scan: scanValue, status });
         }
 
         renderData();
