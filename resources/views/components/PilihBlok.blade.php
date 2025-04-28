@@ -1,4 +1,4 @@
-<div id="class-selection" class="h-full w-full flex flex-col justify-center items-center p-6 bg-gray-50">
+<div id="class-selection" class="min-h-screen w-full flex flex-col justify-center items-center p-6 bg-gray-50">
     <h1 class="text-2xl font-bold mb-6">Pilih Kelas Kandang</h1>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
         <!-- Tombol kelas A1 - A10 -->
