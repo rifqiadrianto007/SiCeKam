@@ -68,8 +68,12 @@
       </div>
 
       <div class="hidden md:flex items-center space-x-4">
-        <a href="#" class="bg-red-600 text-white px-3 py-1 rounded-lg font-medium hover:opacity-90 transition"
-        onclick="window.location.href='{{ route('login') }}'">Logout</a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded-lg font-medium hover:opacity-90 transition">
+                Logout
+            </button>
+        </form>
       </div>
 
       <!-- Mobile menu button -->

@@ -39,8 +39,8 @@
         </header>
 
         <!-- Form with proper attributes -->
-        <form class="space-y-5" action="#" method="POST" autocomplete="on">
-          <!-- Email field with better accessibility -->
+        <form class="space-y-5" action="{{ route('login') }}" method="POST" autocomplete="on">
+        @csrf
           <div>
             <label for="email" class="block text-sm font-medium text-white mb-1">Email</label>
             <div class="relative">
@@ -74,10 +74,9 @@
 
           <button
           type="submit"
-          class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white gradient hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#713fe5]/50 transition-all duration-300"
-          onclick="window.location.href='{{ route('main') }}'">
-          Sign In
-          </button>
+          class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white gradient hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#713fe5]/50 transition-all duration-300">
+          Sign In
+        </button>
         </form>
 
         <footer class="mt-6 text-center text-sm text-white/80">
