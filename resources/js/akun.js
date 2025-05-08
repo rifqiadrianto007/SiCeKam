@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Data awal pengguna
     let dataPengguna = [
-        { id: 1, nama: 'Ahmad Fauzi', username: 'fauziadmin', email: 'ahmad.fauzi@sicekam.com' },
-        { id: 2, nama: 'Budi Santoso', username: 'budipeternak', email: 'budi.santoso@sicekam.com' },
-        { id: 3, nama: 'Citra Dewi', username: 'citradmin', email: 'citra.dewi@sicekam.com' },
-        { id: 4, nama: 'Dian Pratama', username: 'dianpengawas', email: 'dian.pratama@sicekam.com' },
-        { id: 5, nama: 'Eka Saputra', username: 'ekapeternak', email: 'eka.saputra@sicekam.com' }
+        { id: 1, nama: 'Ahmad Fauzi', email: 'ahmad.fauzi@sicekam.com' },
+        { id: 2, nama: 'Budi Santoso', email: 'budi.santoso@sicekam.com' },
+        { id: 3, nama: 'Citra Dewi', email: 'citra.dewi@sicekam.com' },
+        { id: 4, nama: 'Dian Pratama', email: 'dian.pratama@sicekam.com' },
+        { id: 5, nama: 'Eka Saputra', email: 'eka.saputra@sicekam.com' }
     ];
 
     // Elements
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const formPengguna = document.getElementById('formPengguna');
     const penggunaId = document.getElementById('penggunaId');
     const namaPengguna = document.getElementById('namaPengguna');
-    const username = document.getElementById('username');
     const email = document.getElementById('email');
     const btnCloseModal = document.getElementById('btnCloseModal');
     const btnCancel = document.getElementById('btnCancel');
@@ -39,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
             row.innerHTML = `
                 <td class="py-4 px-4">${pengguna.id}</td>
                 <td class="py-4 px-4 font-medium">${pengguna.nama}</td>
-                <td class="py-4 px-4">${pengguna.username}</td>
                 <td class="py-4 px-4">${pengguna.email}</td>
                 <td class="py-4 px-4">
                     <button class="text-blue-500 hover:text-blue-700 mr-2 btnEdit" data-id="${pengguna.id}">
@@ -79,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchTerm = searchUser.value.toLowerCase();
         filteredUsers = dataPengguna.filter(pengguna =>
             pengguna.nama.toLowerCase().includes(searchTerm) ||
-            pengguna.username.toLowerCase().includes(searchTerm) ||
             pengguna.email.toLowerCase().includes(searchTerm)
         );
         renderData();
@@ -91,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (pengguna) {
             penggunaId.value = pengguna.id;
             namaPengguna.value = pengguna.nama;
-            username.value = pengguna.username;
             email.value = pengguna.email;
 
             modalPengguna.classList.remove('hidden');
@@ -131,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const id = parseInt(penggunaId.value);
         const nama = namaPengguna.value;
-        const user = username.value;
         const mail = email.value;
 
         const index = dataPengguna.findIndex(p => p.id === id);
@@ -139,7 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
             dataPengguna[index] = {
                 id,
                 nama,
-                username: user,
                 email: mail
             };
         }
