@@ -12,15 +12,17 @@ class AuthController extends Controller
     // REGISTER
     public function register(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
-        ],
-        [
-            'email.unique' => 'Email sudah terdaftar. Silakan gunakan email lain.',
-            'password.min' => 'Password harus terdiri dari minimal 8 karakter.',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:8',
+            ],
+            [
+                'email.unique' => 'Email sudah terdaftar. Silakan gunakan email lain.',
+                'password.min' => 'Password harus terdiri dari minimal 8 karakter.',
+            ],
+        );
 
         User::create([
             'name' => $validated['name'],
@@ -36,7 +38,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email'    => 'required|email',
+            'email' => 'required|email',
             'password' => 'required|string',
         ]);
 
@@ -49,7 +51,9 @@ class AuthController extends Controller
             return redirect()->route($user->role === 'admin' ? 'admin.dashboard' : 'user.dashboard');
         }
 
-        return back()->withErrors(['email' => 'Email atau password salah.'])->onlyInput('email');
+        return back()
+            ->withErrors(['email' => 'Email atau password salah.'])
+            ->onlyInput('email');
     }
 
     // LOGOUT

@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
-  <title>SiCekam</title>
-  @vite(['resources/css/app.css', 'resources/js/penyakit.js'])
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
+    <title>SiCekam</title>
+    @vite(['resources/css/app.css', 'resources/js/penyakit.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
         body {
             font-family: 'Poppins', sans-serif;
             height: 100vh;
             overflow: hidden;
         }
+
         .gradient {
             background: linear-gradient(135deg, #713fe5 0%, #4361ee 100%);
         }
+
         .file-input-area {
             transition: all 0.3s ease;
             border: 2px dashed rgba(113, 63, 229, 0.3);
         }
+
         .file-input-area:hover {
             border-color: rgba(113, 63, 229, 0.6);
             background-color: rgba(113, 63, 229, 0.05);
         }
+
         ::-webkit-scrollbar {
             display: none;
         }
+
         .content-container {
             height: calc(100vh - 180px);
             overflow-y: auto;
         }
+
         #camera-preview {
             object-fit: cover;
             width: 100%;
             height: 100%;
         }
+
         #camera-container {
             display: none;
             position: relative;
@@ -46,6 +55,7 @@
             border-radius: 0.5rem;
             overflow: hidden;
         }
+
         .class-btn {
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
@@ -53,18 +63,22 @@
             font-weight: 500;
             transition: all 0.2s;
         }
+
         .class-btn:hover {
             background-color: #e0e7ff;
         }
+
         .class-btn.selected {
             background-color: #6366f1;
             color: white;
         }
+
         #deteksi-section {
             display: none;
         }
     </style>
 </head>
+
 <body class="h-full bg-gray-50 flex flex-col">
     <div class="bg-white shadow-sm py-4 px-6 sticky top-0 z-10">
         <div class="flex items-center justify-between">
@@ -85,7 +99,9 @@
             <div class="p-4 mb-4">
                 <div class="flex items-center justify-between">
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full gradient flex items-center justify-center text-white font-medium text-sm">1</div>
+                        <div
+                            class="w-8 h-8 rounded-full gradient flex items-center justify-center text-white font-medium text-sm">
+                            1</div>
                         <span class="text-xs mt-1 font-medium text-primary">Upload</span>
                     </div>
                     <div class="flex-1 mx-2">
@@ -94,7 +110,8 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-medium text-sm" id="step-2">2</div>
+                        <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-medium text-sm"
+                            id="step-2">2</div>
                         <span class="text-xs mt-1 font-medium text-gray-500" id="step-2-text">Hasil</span>
                     </div>
                 </div>
@@ -103,7 +120,8 @@
             <div id="camera-container" class="mb-4">
                 <video id="camera-preview" autoplay playsinline></video>
                 <div class="absolute bottom-4 left-0 right-0 flex justify-center">
-                    <button id="capture-btn" class="rounded-full bg-white border-4 border-primary flex items-center justify-center">
+                    <button id="capture-btn"
+                        class="rounded-full bg-white border-4 border-primary flex items-center justify-center">
                         <div class="w-10 h-10 rounded-full bg-primary"></div>
                     </button>
                     <button id="close-camera-btn" class="absolute right-4 top-2 bg-red-500 text-white p-2 rounded-full">
@@ -117,17 +135,20 @@
                     <div class="file-input-area rounded-2xl p-10 text-center cursor-pointer" id="drop-area">
                         <input type="file" id="file-upload" class="hidden" accept="image/*">
                         <label for="file-upload" class="block cursor-pointer">
-                            <div class="mx-auto mb-6 w-24 h-24 rounded-full bg-indigo-100 flex items-center justify-center">
+                            <div
+                                class="mx-auto mb-6 w-24 h-24 rounded-full bg-indigo-100 flex items-center justify-center">
                                 <i class="fas fa-clinic-medical text-primary text-4xl"></i>
                             </div>
 
                             <h3 class="text-xl font-semibold text-gray-800 mb-4">Upload Foto Ayam</h3>
 
                             <div class="flex justify-center space-x-4">
-                                <button id="open-camera-btn" class="px-6 py-2 rounded-lg border-2 border-primary text-primary text-base font-medium hover:bg-primary hover:text-gray-400 transition">
+                                <button id="open-camera-btn"
+                                    class="px-6 py-2 rounded-lg border-2 border-primary text-primary text-base font-medium hover:bg-primary hover:text-gray-400 transition">
                                     <i class="fas fa-camera mr-2"></i> Ambil Foto
                                 </button>
-                                <button onclick="document.getElementById('file-upload').click()" class="px-6 py-2 rounded-lg border-2 border-primary text-primary text-base font-medium hover:bg-primary hover:text-gray-400 transition">
+                                <button onclick="document.getElementById('file-upload').click()"
+                                    class="px-6 py-2 rounded-lg border-2 border-primary text-primary text-base font-medium hover:bg-primary hover:text-gray-400 transition">
                                     <i class="fas fa-folder-open mr-2"></i> Pilih dari Galeri
                                 </button>
                             </div>
@@ -140,15 +161,18 @@
 
                         <div class="bg-gray-100 rounded-xl p-2">
                             <div class="relative rounded-lg overflow-hidden">
-                                <img id="image-preview" class="w-full h-auto max-h-96 object-contain" src="#" alt="Preview">
-                                <button id="remove-btn" onclick="removeImage()" class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full text-sm">
+                                <img id="image-preview" class="w-full h-auto max-h-96 object-contain" src="#"
+                                    alt="Preview">
+                                <button id="remove-btn" onclick="removeImage()"
+                                    class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full text-sm">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
                         </div>
 
                         <div class="mt-6">
-                            <button id="scan-btn" class="w-full gradient text-white font-medium py-3 px-6 rounded-xl hover:opacity-90 transition flex items-center justify-center text-base">
+                            <button id="scan-btn"
+                                class="w-full gradient text-white font-medium py-3 px-6 rounded-xl hover:opacity-90 transition flex items-center justify-center text-base">
                                 <i class="fas fa-search mr-2 text-lg"></i>Deteksi Kondisi
                             </button>
                         </div>
@@ -156,7 +180,9 @@
                 </div>
 
                 <div id="loading-section" class="hidden p-6 text-center">
-                    <div class="mx-auto w-12 h-12 border-4 border-gray-200 border-t-primary rounded-full animate-spin mb-4"></div>
+                    <div
+                        class="mx-auto w-12 h-12 border-4 border-gray-200 border-t-primary rounded-full animate-spin mb-4">
+                    </div>
                     <h3 class="text-md font-medium text-gray-800 mb-1">Menganalisis Kondisi Ayam</h3>
                     <p class="text-xs text-gray-500">Sistem sedang mendeteksi kesehatan ayam...</p>
                 </div>
@@ -166,8 +192,10 @@
                         <div class="w-full md:w-1/2">
                             <div class="bg-gray-100 rounded-lg p-1">
                                 <div class="relative rounded overflow-hidden">
-                                    <img id="result-image" class="w-full h-auto max-h-64 object-contain" src="#" alt="Processed Image">
-                                    <div class="absolute top-2 right-2 bg-primary text-white text-xs py-0.5 px-2 rounded-full font-medium">
+                                    <img id="result-image" class="w-full h-auto max-h-64 object-contain" src="#"
+                                        alt="Processed Image">
+                                    <div
+                                        class="absolute top-2 right-2 bg-primary text-white text-xs py-0.5 px-2 rounded-full font-medium">
                                         Analisis
                                     </div>
                                 </div>
@@ -179,7 +207,8 @@
                                 <div class="bg-indigo-50 p-3 rounded-lg">
                                     <div class="flex items-center justify-between mb-2">
                                         <div class="flex items-center">
-                                            <div class="w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-2">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-2">
                                                 <i class="fas fa-heartbeat text-primary text-sm"></i>
                                             </div>
                                             <div>
@@ -190,7 +219,8 @@
                                     </div>
                                 </div>
 
-                                <button onclick="resetProcess()" class="w-full py-2 px-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center justify-center text-sm font-medium">
+                                <button onclick="resetProcess()"
+                                    class="w-full py-2 px-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center justify-center text-sm font-medium">
                                     <i class="fas fa-redo mr-2"></i> Deteksi Ayam Lain
                                 </button>
                             </div>
@@ -205,16 +235,19 @@
                 </h3>
                 <div class="grid grid-cols-1 gap-3">
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center mr-2 mt-0.5">
+                        <div
+                            class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center mr-2 mt-0.5">
                             <i class="fas fa-camera text-primary text-xs"></i>
                         </div>
                         <div>
                             <p class="text-xs font-medium text-gray-800">Foto dari Berbagai Sudut</p>
-                            <p class="text-xs text-gray-600">Ambil foto dari depan atau samping untuk deteksi lebih akurat</p>
+                            <p class="text-xs text-gray-600">Ambil foto dari depan atau samping untuk deteksi lebih
+                                akurat</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center mr-2 mt-0.5">
+                        <div
+                            class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center mr-2 mt-0.5">
                             <i class="fas fa-eye text-primary text-xs"></i>
                         </div>
                         <div>
@@ -275,7 +308,9 @@
             if (selectedClass) {
                 classSelection.style.display = 'none';
                 deteksiSection.style.display = 'block';
-                deteksiSection.scrollIntoView({ behavior: 'smooth' });
+                deteksiSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
         });
 
@@ -288,8 +323,12 @@
                 stream = await navigator.mediaDevices.getUserMedia({
                     video: {
                         facingMode: 'environment',
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 }
+                        width: {
+                            ideal: 1280
+                        },
+                        height: {
+                            ideal: 720
+                        }
                     },
                     audio: false
                 });
@@ -326,7 +365,9 @@
             ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
 
             canvas.toBlob(function(blob) {
-                const file = new File([blob], 'ayam-deteksi.jpg', { type: 'image/jpeg' });
+                const file = new File([blob], 'ayam-deteksi.jpg', {
+                    type: 'image/jpeg'
+                });
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(file);
                 fileUpload.files = dataTransfer.files;
@@ -401,11 +442,13 @@
         }
 
         ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => dropArea.classList.add('border-primary', 'bg-indigo-50'), false);
+            dropArea.addEventListener(eventName, () => dropArea.classList.add('border-primary', 'bg-indigo-50'),
+                false);
         });
 
         ['dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => dropArea.classList.remove('border-primary', 'bg-indigo-50'), false);
+            dropArea.addEventListener(eventName, () => dropArea.classList.remove('border-primary', 'bg-indigo-50'),
+                false);
         });
 
         dropArea.addEventListener('drop', function(e) {
@@ -417,4 +460,5 @@
         });
     </script>
 </body>
+
 </html>

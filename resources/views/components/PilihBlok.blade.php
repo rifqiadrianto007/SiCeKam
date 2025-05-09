@@ -13,5 +13,7 @@
         <button onclick="selectClass('A9')" class="class-btn">A9</button>
         <button onclick="selectClass('A10')" class="class-btn">A10</button>
     </div>
-    <button id="lanjut-btn" class="bg-primary text-indigo-500 font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition disabled:opacity-50" disabled>Lanjutkan</button>
+    <button id="lanjut-btn"
+        class="bg-primary text-indigo-500 font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition disabled:opacity-50"
+        disabled>Lanjutkan</button>
 </div>

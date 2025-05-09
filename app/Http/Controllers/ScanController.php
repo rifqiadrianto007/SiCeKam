@@ -20,4 +20,3 @@ class ScanController extends Controller
         return back()->with('success', 'Gambar berhasil diunggah!')->with('image', $publicPath);
     }
 }
-

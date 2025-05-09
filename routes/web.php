@@ -35,8 +35,6 @@ Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(
     Route::get('/penyakit', function () {
         return view('penyakit');
     })->name('penyakit');
-
-
 });
 
 // Rute untuk admin
@@ -59,4 +57,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // Logout hanya bisa diakses oleh pengguna yang terautentikasi
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');

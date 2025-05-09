@@ -5,7 +5,8 @@
     <div class="overflow-y-auto overflow-x-hidden flex-grow">
         <ul class="flex flex-col space-y-1 py-4">
             <li>
-                <a href="{{ route('admin.dashboard') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('admin') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
+                <a href="{{ route('admin.dashboard') }}"
+                    class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('admin') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
                     <span class="inline-flex justify-center items-center ml-4">
                         <i class="fas fa-tachometer-alt"></i>
                     </span>
@@ -13,7 +14,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('ayam') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('ayam*') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
+                <a href="{{ route('ayam') }}"
+                    class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('ayam*') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
                     <span class="inline-flex justify-center items-center ml-4">
                         <i class="fas fa-warehouse"></i>
                     </span>
@@ -23,7 +25,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.akun') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('akun*') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
+                <a href="{{ route('admin.akun') }}"
+                    class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-indigo-400 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 pr-6 {{ request()->routeIs('akun*') ? 'active-nav border-blue-500 bg-indigo-400' : '' }}">
                     <span class="inline-flex justify-center items-center ml-4">
                         <i class="fas fa-users-cog"></i>
                     </span>

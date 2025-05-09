@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
-  <title>SiCekam</title>
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
+    <title>SiCekam</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
         body {
             font-family: 'Poppins', sans-serif;
             height: 100vh;
             overflow: hidden;
         }
+
         .gradient {
             background: linear-gradient(135deg, #713fe5 0%, #4361ee 100%);
         }
+
         .file-input-area {
             transition: all 0.3s ease;
             border: 2px dashed rgba(113, 63, 229, 0.3);
         }
+
         .file-input-area:hover {
             border-color: rgba(113, 63, 229, 0.6);
             background-color: rgba(113, 63, 229, 0.05);
         }
+
         ::-webkit-scrollbar {
             display: none;
         }
+
         .content-container {
             height: calc(100vh - 180px);
             overflow-y: auto;
         }
+
         #camera-preview {
             object-fit: cover;
             width: 100%;
             height: 100%;
         }
+
         #camera-container {
             display: none;
             position: relative;
@@ -46,6 +55,7 @@
             border-radius: 0.5rem;
             overflow: hidden;
         }
+
         .class-btn {
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
@@ -53,18 +63,22 @@
             font-weight: 500;
             transition: all 0.2s;
         }
+
         .class-btn:hover {
             background-color: #e0e7ff;
         }
+
         .class-btn.selected {
             background-color: #6366f1;
             color: white;
         }
+
         #deteksi-section {
             display: none;
         }
     </style>
 </head>
+
 <body class="h-full bg-gray-50 flex flex-col">
     <div class="bg-white shadow-sm py-4 px-6 sticky top-0 z-10">
         <div class="flex items-center justify-between">
@@ -130,11 +144,13 @@
             if (selectedClass) {
                 classSelection.style.display = 'none';
                 deteksiSection.style.display = 'block';
-                deteksiSection.scrollIntoView({ behavior: 'smooth' });
+                deteksiSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
         });
 
-// BAGIAN AI KEBAWAH PENTING
+        // BAGIAN AI KEBAWAH PENTING
         document.getElementById('scan-btn').addEventListener('click', uploadToFlaskAPI);
 
         async function uploadToFlaskAPI() {
@@ -168,16 +184,16 @@
                     // Tampilkan jumlah ayam
                     document.getElementById('jumlah-ayam').textContent = jumlahAyam;
 
-                //     alert(`Deteksi berhasil! Jumlah ayam terdeteksi: ${jumlahAyam}`);
-                // } else {
-                //     alert('Deteksi gagal: ' + (data.error || 'Unknown error'));
+                    //     alert(`Deteksi berhasil! Jumlah ayam terdeteksi: ${jumlahAyam}`);
+                    // } else {
+                    //     alert('Deteksi gagal: ' + (data.error || 'Unknown error'));
                 }
             } catch (error) {
                 console.error('Gagal mengirim ke API Flask:', error);
                 alert('Terjadi kesalahan saat menghubungi server Flask.');
             }
         }
-// SAMPAI SINI
+        // SAMPAI SINI
 
         // Open camera
         openCameraBtn.addEventListener('click', async function() {
@@ -188,8 +204,12 @@
                 stream = await navigator.mediaDevices.getUserMedia({
                     video: {
                         facingMode: 'environment',
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 }
+                        width: {
+                            ideal: 1280
+                        },
+                        height: {
+                            ideal: 720
+                        }
                     },
                     audio: false
                 });
@@ -226,7 +246,9 @@
             ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
 
             canvas.toBlob(function(blob) {
-                const file = new File([blob], 'kandang-ayam.jpg', { type: 'image/jpeg' });
+                const file = new File([blob], 'kandang-ayam.jpg', {
+                    type: 'image/jpeg'
+                });
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(file);
                 fileUpload.files = dataTransfer.files;
@@ -307,11 +329,13 @@
         }
 
         ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => dropArea.classList.add('border-primary', 'bg-indigo-50'), false);
+            dropArea.addEventListener(eventName, () => dropArea.classList.add('border-primary', 'bg-indigo-50'),
+                false);
         });
 
         ['dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => dropArea.classList.remove('border-primary', 'bg-indigo-50'), false);
+            dropArea.addEventListener(eventName, () => dropArea.classList.remove('border-primary', 'bg-indigo-50'),
+                false);
         });
 
         dropArea.addEventListener('drop', function(e) {
@@ -323,4 +347,5 @@
         });
     </script>
 </body>
+
 </html>

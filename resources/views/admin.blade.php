@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
-  <title>SiCekam</title>
-  @vite(['resources/css/app.css', 'resources/js/admin.js'])
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
+    <title>SiCekam</title>
+    @vite(['resources/css/app.css', 'resources/js/admin.js'])
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.5;
             }
         }
+
         .animate-pulse {
             animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+
         .chart-container {
             height: calc(100vh - 400px);
             min-height: 350px;
         }
     </style>
 </head>
+
 <body class="bg-gray-100">
     <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased">
         <!-- Sidebar -->
@@ -39,7 +46,8 @@
                 <div class="flex items-center space-x-4">
                     <div class="flex space-x-2">
                         <input type="date" id="dateFilter" class="border rounded-md px-3 py-1 text-sm">
-                        <button id="filterButton" class="bg-indigo-500 hover:bg-indigo-300 text-white px-3 py-1 rounded-md text-sm">
+                        <button id="filterButton"
+                            class="bg-indigo-500 hover:bg-indigo-300 text-white px-3 py-1 rounded-md text-sm">
                             <i class="fas fa-search mr-1"></i> Filter
                         </button>
                     </div>
@@ -48,9 +56,13 @@
 
             <div id="loadingSpinner" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 z-50">
                 <div class="p-4 bg-white rounded-lg shadow-xl flex items-center">
-                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                            stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
                     </svg>
                     <span>Memuat data...</span>
                 </div>
@@ -133,4 +145,5 @@
         </div>
     </div>
 </body>
+
 </html>
