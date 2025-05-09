@@ -16,6 +16,10 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
+        ],
+        [
+            'email.unique' => 'Email sudah terdaftar. Silakan gunakan email lain.',
+            'password.min' => 'Password harus terdiri dari minimal 8 karakter.',
         ]);
 
         User::create([
