@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
-    <title>SiCekam</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
-</head>
+@extends('layout.app')
+{{-- Main --}}
+{{-- Navbar --}}
+<x-navbar />
 
-<body class="bg-gray-50 text-gray-800 font-sans scrollbar-hide">
-
-    {{-- Navbar --}}
-    <x-navbar />
-
-    {{-- Home --}}
-
+{{-- Home --}}
+@section('content')
     <section id="home" class="pt-16">
         <div class="w-full h-[300px] relative overflow-hidden">
             <img src="{{ Vite::asset('resources/images/kandang.png') }}" alt="kandang"
@@ -112,8 +102,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
                 <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition hover:-translate-y-1">
                     <div class="p-8">
-                        <div
-                            class="bg-gray-100 relative z-10 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <div class="bg-gray-100 relative z-10 w-14 h-14 rounded-full flex items-center justify-center mb-6">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -143,8 +132,7 @@
 
                 <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition hover:-translate-y-1">
                     <div class="p-8">
-                        <div
-                            class="bg-gray-100 relative z-10 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <div class="bg-gray-100 relative z-10 w-14 h-14 rounded-full flex items-center justify-center mb-6">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -160,8 +148,8 @@
                             class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group">
                             <span>Coba Fitur Ini</span>
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 ml-2 transform transition group-hover:translate-x-1"
-                                viewBox="0 0 20 20" fill="currentColor">
+                                class="h-5 w-5 ml-2 transform transition group-hover:translate-x-1" viewBox="0 0 20 20"
+                                fill="currentColor">
                                 <path fill-rule="evenodd"
                                     d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
                                     clip-rule="evenodd" />
@@ -178,7 +166,3 @@
             </div> --}}
         </div>
     </section>
-    <script src=""></script>
-</body>
-
-</html>
