@@ -207,12 +207,12 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-16 text-center">
+            {{-- <div class="mt-16 text-center">
                 <a href="https://wa.me/6282332061664"
                     class="gradient inline-block text-white font-medium text-lg px-8 py-4 rounded-full hover:opacity-90 transition">
                     Hubungi Kami
                 </a>
-            </div>
+            </div> --}}
         </div>
     </section>
     <script src=""></script>
