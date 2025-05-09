@@ -1,23 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
-    <title>SiCekam</title>
     @vite(['resources/css/app.css', 'resources/js/akun.js'])
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-</head>
 
-<body class="bg-gray-100">
-    <div class="flex min-h-screen">
-        <!-- Sidebar -->
-        <x-sidebar-admin />
-
-        <!-- Content Area - Adjusted margin to accommodate sidebar -->
-        <div class="ml-64 flex-1 p-6 w-full">
+    @extends('layout.adm')
+    {{-- Main --}}
+    @section('content')
+        <div class="ml-64 p-6">
             <div class="mb-6">
                 <h1 class="text-2xl font-bold text-gray-800">Manajemen Pengguna</h1>
             </div>
@@ -94,62 +80,59 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 
-    <!-- Modal Edit Pengguna -->
-    <div id="modalPengguna" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex hidden items-center justify-center">
-        <div class="bg-white rounded-lg shadow-lg w-full max-w-md">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-medium text-gray-900" id="modalTitle">Edit Pengguna</h3>
-                    <button class="text-gray-400 hover:text-gray-500" id="btnCloseModal">
-                        <i class="fas fa-times"></i>
-                    </button>
+        <!-- Modal Edit Pengguna -->
+        <div id="modalPengguna" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex hidden items-center justify-center">
+            <div class="bg-white rounded-lg shadow-lg w-full max-w-md">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-medium text-gray-900" id="modalTitle">Edit Pengguna</h3>
+                        <button class="text-gray-400 hover:text-gray-500" id="btnCloseModal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <form id="formPengguna">
+                        <input type="hidden" id="penggunaId">
+
+                        <div class="mb-4">
+                            <label for="namaPengguna" class="block text-sm font-medium text-gray-700 mb-1">Nama
+                                Lengkap</label>
+                            <input type="text" id="namaPengguna"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md"
+                                required>
+                        </div>
+
+                        <div class="flex justify-end mt-6">
+                            <button type="button" id="btnCancel"
+                                class="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mr-2 hover:bg-gray-300">Batal</button>
+                            <button type="submit" id="btnSimpan"
+                                class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Simpan</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
+        </div>
 
-                <form id="formPengguna">
-                    <input type="hidden" id="penggunaId">
+        <!-- Konfirmasi Hapus -->
+        <div id="modalKonfirmasi" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex hidden items-center justify-center">
+            <div class="bg-white rounded-lg shadow-lg w-full max-w-sm">
+                <div class="p-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-3">Konfirmasi Hapus</h3>
+                    <p class="text-gray-500 mb-6">Apakah Anda yakin ingin menghapus pengguna ini?</p>
 
-                    <div class="mb-4">
-                        <label for="namaPengguna" class="block text-sm font-medium text-gray-700 mb-1">Nama
-                            Lengkap</label>
-                        <input type="text" id="namaPengguna"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md"
-                            required>
-                    </div>
-
-                    <div class="flex justify-end mt-6">
-                        <button type="button" id="btnCancel"
+                    <div class="flex justify-end">
+                        <button id="btnBatalHapus"
                             class="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mr-2 hover:bg-gray-300">Batal</button>
-                        <button type="submit" id="btnSimpan"
-                            class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Simpan</button>
+                        <button id="btnKonfirmasiHapus"
+                            class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">Hapus</button>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Konfirmasi Hapus -->
-    <div id="modalKonfirmasi" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex hidden items-center justify-center">
-        <div class="bg-white rounded-lg shadow-lg w-full max-w-sm">
-            <div class="p-6">
-                <h3 class="text-lg font-medium text-gray-900 mb-3">Konfirmasi Hapus</h3>
-                <p class="text-gray-500 mb-6">Apakah Anda yakin ingin menghapus pengguna ini?</p>
-
-                <div class="flex justify-end">
-                    <button id="btnBatalHapus"
-                        class="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mr-2 hover:bg-gray-300">Batal</button>
-                    <button id="btnKonfirmasiHapus"
-                        class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">Hapus</button>
                 </div>
             </div>
         </div>
-    </div>
-</body>
-
-</html>

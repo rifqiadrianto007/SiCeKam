@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
-    <title>SiCekam</title>
     @vite(['resources/css/app.css', 'resources/js/admin.js'])
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-</head>
 
-<body class="bg-gray-100">
-    <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased">
-        <!-- Sidebar -->
-        <x-sidebar-admin />
-
+    @extends('layout.adm')
+    {{-- Main --}}
+    @section('content')
         <div class="ml-64 p-6">
             <!-- Header -->
             <div class="flex justify-between items-center pb-4">
@@ -121,30 +107,27 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 
-    <script>
-        // Add custom animation for pulse effect
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        pulse: 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        pulse: {
-                            '0%, 100%': {
-                                opacity: '1'
-                            },
-                            '50%': {
-                                opacity: '0.5'
-                            },
+        <script>
+            // Add custom animation for pulse effect
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        animation: {
+                            pulse: 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        },
+                        keyframes: {
+                            pulse: {
+                                '0%, 100%': {
+                                    opacity: '1'
+                                },
+                                '50%': {
+                                    opacity: '0.5'
+                                },
+                            }
                         }
                     }
                 }
             }
-        }
-    </script>
-</body>
-
-</html>
+        </script>
