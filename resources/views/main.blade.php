@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8" />
@@ -8,49 +8,9 @@
     <title>SiCekam</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .gradient {
-            background: linear-gradient(135deg, #713fe5 0%, #4361ee 100%);
-        }
-
-        .content-card {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid #4e4376;
-        }
-
-        .benefit-item {
-            border-bottom: 1px dashed #e5e7eb;
-            padding-bottom: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .benefit-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
-        }
-
-        .feature-icon {
-            background-color: #f3f4f6;
-            position: relative;
-            z-index: 1;
-        }
-
-        ::-webkit-scrollbar {
-            display: none
-        }
-
-        .shadow {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-    </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800 font-sans scrollbar-hide">
 
     {{-- Navbar --}}
     <x-navbar />
@@ -96,11 +56,12 @@
                     </div>
                 </div>
 
-                <div class="content-card rounded-xl p-8 shadow transform transition hover:-translate-y-1">
+                <div
+                    class="bg-white/95 border-l-4 border-[#4e4376] rounded-xl p-8 shadow-lg transform transition hover:-translate-y-1">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Manfaat Utama</h3>
 
                     <div class="space-y-4">
-                        <div class="benefit-item flex">
+                        <div class="border-b border-dashed border-gray-200 pb-3 mb-3 flex">
                             <div
                                 class="flex-shrink-0 w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none"
@@ -116,7 +77,7 @@
                             </div>
                         </div>
 
-                        <div class="benefit-item flex">
+                        <div class="flex">
                             <div
                                 class="flex-shrink-0 w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none"
@@ -149,9 +110,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-                <div class="bg-white rounded-xl overflow-hidden shadow transform transition hover:-translate-y-1">
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition hover:-translate-y-1">
                     <div class="p-8">
-                        <div class="feature-icon w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <div
+                            class="bg-gray-100 relative z-10 w-14 h-14 rounded-full flex items-center justify-center mb-6">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -179,9 +141,10 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl overflow-hidden shadow transform transition hover:-translate-y-1">
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition hover:-translate-y-1">
                     <div class="p-8">
-                        <div class="feature-icon w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <div
+                            class="bg-gray-100 relative z-10 w-14 h-14 rounded-full flex items-center justify-center mb-6">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -209,7 +172,7 @@
             </div>
             {{-- <div class="mt-16 text-center">
                 <a href="https://wa.me/6282332061664"
-                    class="gradient inline-block text-white font-medium text-lg px-8 py-4 rounded-full hover:opacity-90 transition">
+                    class="bg-gradient-to-br from-[#713fe5] to-[#4361ee] inline-block text-white font-medium text-lg px-8 py-4 rounded-full hover:opacity-90 transition">
                     Hubungi Kami
                 </a>
             </div> --}}

@@ -7,23 +7,10 @@
     <meta name="description" content="Sistem Cek Kandang Ayam - Login Page">
     <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
     <title>SiCekam</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        .gradient {
-            background: linear-gradient(135deg, #713fe5 0%, #4361ee 100%);
-            background-attachment: fixed;
-        }
-
-        body {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/login.js'])
 </head>
 
-<body class="flex items-center justify-center min-h-screen"
+<body class="flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed"
     style="background-image: url('{{ Vite::asset('resources/images/kandang.png') }}')">
     <!-- Background overlay with improved accessibility -->
     <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true"></div>
@@ -36,7 +23,7 @@
             <div class="p-8">
                 <!-- Logo/Header with better semantic structure -->
                 <header class="flex flex-col items-center mb-8">
-                    <div class="w-16 h-16 rounded-full gradient flex items-center justify-center mb-4 shadow-lg"
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[#713fe5] to-[#4361ee] flex items-center justify-center mb-4 shadow-lg"
                         aria-hidden="true">
                         <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="SiCekam Logo" class="h-12 w-auto"
                             loading="eager" />
@@ -108,7 +95,7 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white gradient hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#713fe5]/50 transition-all duration-300">
+                        class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-br from-[#713fe5] to-[#4361ee] bg-fixed hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#713fe5]/50 transition-all duration-300">
                         Sign In
                     </button>
                 </form>
@@ -121,28 +108,6 @@
         </div>
     </div>
 
-    <script>
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
-        const eyeIcon = document.getElementById('eyeIcon');
-
-        const eyeVisible = `
-      <path d="M12 4.5c-4.478 0-8.268 2.943-9.542 7 1.274 4.057 5.064 7 9.542 7s8.268-2.943 9.542-7c-1.274-4.057-5.064-7-9.542-7zM12 15a3 3 0 110-6 3 3 0 010 6z"/>
-    `;
-
-        const eyeSlash = `
-      <path d="M3.98 8.223A10.97 10.97 0 001.458 10C2.732 14.057 6.522 17 11 17c1.392 0 2.716-.262 3.924-.736l-1.625-1.625A4.978 4.978 0 0111 15a5 5 0 01-5-5c0-.872.223-1.69.615-2.403L3.98 8.223z"/>
-      <path d="M19.293 19.293l-16-16 1.414-1.414 16 16-1.414 1.414z"/>
-    `;
-
-        let visible = false;
-
-        togglePassword.addEventListener('click', () => {
-            visible = !visible;
-            passwordInput.type = visible ? 'text' : 'password';
-            eyeIcon.innerHTML = visible ? eyeVisible : eyeSlash;
-        });
-    </script>
 </body>
 
 </html>

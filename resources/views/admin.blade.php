@@ -10,28 +10,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <style>
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        .animate-pulse {
-            animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .chart-container {
-            height: calc(100vh - 400px);
-            min-height: 350px;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-100">
@@ -130,20 +108,43 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                 <div class="bg-white rounded-lg shadow-md p-4">
                     <h2 class="text-lg font-medium mb-2">Distribusi Ayam per Blok</h2>
-                    <div class="chart-container">
+                    <div class="h-[calc(100vh-400px)] min-h-[350px]">
                         <canvas id="distributionChart"></canvas>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md p-4">
                     <h2 class="text-lg font-medium mb-2">Status Pemeriksaan</h2>
-                    <div class="chart-container">
+                    <div class="h-[calc(100vh-400px)] min-h-[350px]">
                         <canvas id="healthChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Add custom animation for pulse effect
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        pulse: 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        pulse: {
+                            '0%, 100%': {
+                                opacity: '1'
+                            },
+                            '50%': {
+                                opacity: '0.5'
+                            },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
