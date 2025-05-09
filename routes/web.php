@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ScanController;
-use App\Http\Controllers\AuthController;
 use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ScanController;
+use App\Http\Controllers\AdminController;
 
 // Halaman login dan register
 Route::get('/', function () {
@@ -13,6 +14,11 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+
+Route::get('/admin/akun', [AdminController::class, 'akun'])->name('admin.akun');
+Route::get('/admin/akun/{id}/edit', [AdminController::class, 'edit'])->name('admin.akun.edit');
+Route::put('/admin/akun/{id}', [AdminController::class, 'update'])->name('admin.akun.update');
+Route::delete('/admin/akun/{id}', [AdminController::class, 'destroy'])->name('admin.akun.destroy');
 
 // Rute setelah login untuk pengguna
 Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(function () {

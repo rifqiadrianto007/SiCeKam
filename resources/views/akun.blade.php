@@ -47,8 +47,26 @@
                                     <th class="py-3 px-4 text-left text-sm font-medium text-gray-500 uppercase">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabelPengguna">
-                                <!-- Data akan diisi oleh JavaScript -->
+                            <tbody>
+                                @foreach($users as $user)
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-4 px-4">{{ $user->id }}</td>
+                                    <td class="py-4 px-4 font-medium">{{ $user->name }}</td>
+                                    <td class="py-4 px-4">{{ $user->email }}</td>
+                                    <td class="py-4 px-4">
+                                        <button class="text-blue-500 hover:text-blue-700 mr-2 btnEdit"
+                                                data-id="{{ $user->id }}"
+                                                data-nama="{{ $user->name }}"
+                                                data-email="{{ $user->email }}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-red-500 hover:text-red-700 btnHapus"
+                                                data-id="{{ $user->id }}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
