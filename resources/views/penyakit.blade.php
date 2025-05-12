@@ -166,7 +166,7 @@
                             </div>
 
                             <div class="mt-6">
-                                <button id="scan-btn"
+                                <button type="button" id="scan-btn"
                                     class="w-full gradient text-white font-medium py-3 px-6 rounded-xl hover:opacity-90 transition flex items-center justify-center text-base">
                                     <i class="fas fa-search mr-2 text-lg"></i>Deteksi Kondisi
                                 </button>
@@ -208,7 +208,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-xs text-gray-500">Status Kesehatan</p>
-                                                    <p class="text-xl font-bold text-gray-900">Potensi Sakit</p>
+                                                    <p id="status-ayam" class="text-xl font-bold text-gray-900">-</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -308,6 +308,51 @@
                     });
                 }
             });
+
+            document.getElementById('scan-btn').addEventListener('click', uploadToFlaskAPI);
+
+            async function uploadToFlaskAPI() {
+                const fileInput = document.getElementById('file-upload');
+                if (!fileInput.files.length) {
+                    alert('Silakan pilih gambar terlebih dahulu.');
+                    return;
+                }
+
+                const file = fileInput.files[0];
+                const formData = new FormData();
+                formData.append('image', file);
+
+                try {
+                    const response = await fetch('http://localhost:5000/predict', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json();
+                    console.log('Hasil dari Flask:', data);
+
+                    if (data.success) {
+                        // Tampilkan gambar hasil deteksi
+                        document.getElementById('image-preview').src = data.image;
+
+                        // Tampilkan status kesehatan ayam
+                        const statusElement = document.getElementById('status-ayam');
+                        statusElement.textContent = `${data.status === 'sakit' ? 'Sakit' : 'Sehat'}`;
+
+                        // Beri warna berbeda berdasarkan status
+                        if (data.status === 'sakit') {
+                            statusElement.style.color = 'red';
+                        } else {
+                            statusElement.style.color = 'green';
+                        }
+                    } else {
+                        alert('Deteksi gagal: ' + (data.error || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Gagal mengirim ke API Flask:', error);
+                    alert('Terjadi kesalahan saat menghubungi server Flask.');
+                }
+            }
 
             // Open camera
             openCameraBtn.addEventListener('click', async function() {
