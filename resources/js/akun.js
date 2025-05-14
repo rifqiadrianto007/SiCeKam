@@ -1,159 +1,96 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Data awal pengguna
-//     let dataPengguna = [
-//         { id: 1, nama: 'Ahmad Fauzi', email: 'ahmad.fauzi@sicekam.com' },
-//         { id: 2, nama: 'Budi Santoso', email: 'budi.santoso@sicekam.com' },
-//         { id: 3, nama: 'Citra Dewi', email: 'citra.dewi@sicekam.com' },
-//         { id: 4, nama: 'Dian Pratama', email: 'dian.pratama@sicekam.com' },
-//         { id: 5, nama: 'Eka Saputra', email: 'eka.saputra@sicekam.com' }
-//     ];
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('modalPengguna');
+    const form = document.getElementById('formPengguna');
+    const modalHapus = document.getElementById('modalKonfirmasi');
 
-//     // Elements
-//     const tabelPengguna = document.getElementById('tabelPengguna');
-//     const modalPengguna = document.getElementById('modalPengguna');
-//     const modalKonfirmasi = document.getElementById('modalKonfirmasi');
-//     const formPengguna = document.getElementById('formPengguna');
-//     const penggunaId = document.getElementById('penggunaId');
-//     const namaPengguna = document.getElementById('namaPengguna');
-//     const email = document.getElementById('email');
-//     const btnCloseModal = document.getElementById('btnCloseModal');
-//     const btnCancel = document.getElementById('btnCancel');
-//     const btnBatalHapus = document.getElementById('btnBatalHapus');
-//     const btnKonfirmasiHapus = document.getElementById('btnKonfirmasiHapus');
-//     const searchUser = document.getElementById('searchUser');
-//     const displayedUsers = document.getElementById('displayedUsers');
-//     const totalUsers = document.getElementById('totalUsers');
+    let idToDelete = null;
 
-//     let idToDelete = null;
-//     let filteredUsers = [...dataPengguna];
+    // Buka modal edit
+    document.querySelectorAll('.btnEdit').forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-nama');
+            const email = button.getAttribute('data-email');
 
-//     // Render tabel
-//     function renderData() {
-//         tabelPengguna.innerHTML = '';
+            document.getElementById('penggunaId').value = id;
+            document.getElementById('namaPengguna').value = name;
+            document.getElementById('email').value = email;
 
-//         filteredUsers.forEach(pengguna => {
-//             const row = document.createElement('tr');
-//             row.className = 'border-b hover:bg-gray-50';
+            modal.classList.remove('hidden');
+        });
+    });
 
-//             row.innerHTML = `
-//                 <td class="py-4 px-4">${pengguna.id}</td>
-//                 <td class="py-4 px-4 font-medium">${pengguna.nama}</td>
-//                 <td class="py-4 px-4">${pengguna.email}</td>
-//                 <td class="py-4 px-4">
-//                     <button class="text-blue-500 hover:text-blue-700 mr-2 btnEdit" data-id="${pengguna.id}">
-//                         <i class="fas fa-edit"></i>
-//                     </button>
-//                     <button class="text-red-500 hover:text-red-700 btnHapus" data-id="${pengguna.id}">
-//                         <i class="fas fa-trash"></i>
-//                     </button>
-//                 </td>
-//             `;
+    // Tutup modal edit
+    document.getElementById('btnCloseModal').addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+    document.getElementById('btnCancel').addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
 
-//             tabelPengguna.appendChild(row);
-//         });
+    // Submit update user
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-//         // Update counter
-//         displayedUsers.textContent = filteredUsers.length;
-//         totalUsers.textContent = dataPengguna.length;
+        const id = document.getElementById('penggunaId').value;
+        const name = document.getElementById('namaPengguna').value;
+        const email = document.getElementById('email').value;
 
-//         // Add event listeners to edit and delete buttons
-//         document.querySelectorAll('.btnEdit').forEach(btn => {
-//             btn.addEventListener('click', function() {
-//                 const id = parseInt(this.getAttribute('data-id'));
-//                 editPengguna(id);
-//             });
-//         });
+        fetch(`/admin/akun/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                _method: 'PUT',
+                name: name,
+                email: email,
+            }),
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Gagal mengupdate data.');
+            }
+        });
+    });
 
-//         document.querySelectorAll('.btnHapus').forEach(btn => {
-//             btn.addEventListener('click', function() {
-//                 const id = parseInt(this.getAttribute('data-id'));
-//                 showDeleteConfirmation(id);
-//             });
-//         });
-//     }
+    // Buka modal konfirmasi hapus
+    document.querySelectorAll('.btnHapus').forEach(button => {
+        button.addEventListener('click', () => {
+            idToDelete = button.getAttribute('data-id');
+            modalHapus.classList.remove('hidden');
+        });
+    });
 
-//     // Filter users
-//     function filterUsers() {
-//         const searchTerm = searchUser.value.toLowerCase();
-//         filteredUsers = dataPengguna.filter(pengguna =>
-//             pengguna.nama.toLowerCase().includes(searchTerm) ||
-//             pengguna.email.toLowerCase().includes(searchTerm)
-//         );
-//         renderData();
-//     }
+    // Batal hapus
+    document.getElementById('btnBatalHapus').addEventListener('click', () => {
+        modalHapus.classList.add('hidden');
+        idToDelete = null;
+    });
 
-//     // Open modal for editing a user
-//     function editPengguna(id) {
-//         const pengguna = dataPengguna.find(p => p.id === id);
-//         if (pengguna) {
-//             penggunaId.value = pengguna.id;
-//             namaPengguna.value = pengguna.nama;
-//             email.value = pengguna.email;
-
-//             modalPengguna.classList.remove('hidden');
-//             modalPengguna.classList.add('flex');
-//         }
-//     }
-
-//     // Show delete confirmation
-//     function showDeleteConfirmation(id) {
-//         idToDelete = id;
-//         modalKonfirmasi.classList.remove('hidden');
-//         modalKonfirmasi.classList.add('flex');
-//     }
-
-//     // Delete user
-//     function deleteUser(id) {
-//         dataPengguna = dataPengguna.filter(p => p.id !== id);
-//         filterUsers();
-//         closeDeleteModal();
-//     }
-
-//     // Close modals
-//     function closeModal() {
-//         modalPengguna.classList.add('hidden');
-//         modalPengguna.classList.remove('flex');
-//     }
-
-//     function closeDeleteModal() {
-//         modalKonfirmasi.classList.add('hidden');
-//         modalKonfirmasi.classList.remove('flex');
-//         idToDelete = null;
-//     }
-
-//     // Save user data
-//     function savePengguna(e) {
-//         e.preventDefault();
-
-//         const id = parseInt(penggunaId.value);
-//         const nama = namaPengguna.value;
-//         const mail = email.value;
-
-//         const index = dataPengguna.findIndex(p => p.id === id);
-//         if (index !== -1) {
-//             dataPengguna[index] = {
-//                 id,
-//                 nama,
-//                 email: mail
-//             };
-//         }
-
-//         filterUsers();
-//         closeModal();
-//     }
-
-//     // Event listeners
-//     btnCloseModal.addEventListener('click', closeModal);
-//     btnCancel.addEventListener('click', closeModal);
-//     formPengguna.addEventListener('submit', savePengguna);
-//     btnBatalHapus.addEventListener('click', closeDeleteModal);
-//     btnKonfirmasiHapus.addEventListener('click', function() {
-//         if (idToDelete) {
-//             deleteUser(idToDelete);
-//         }
-//     });
-//     searchUser.addEventListener('input', filterUsers);
-
-//     // Initial render
-//     renderData();
-// });
+    // Konfirmasi hapus
+    document.getElementById('btnKonfirmasiHapus').addEventListener('click', () => {
+        fetch(`/admin/akun/${idToDelete}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                _method: 'DELETE',
+            }),
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Gagal menghapus data.');
+            }
+        });
+    });
+});

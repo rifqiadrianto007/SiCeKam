@@ -16,9 +16,8 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::get('/admin/akun', [AdminController::class, 'akun'])->name('admin.akun');
-Route::get('/admin/akun/{id}/edit', [AdminController::class, 'edit'])->name('admin.akun.edit');
-Route::put('/admin/akun/{id}', [AdminController::class, 'update'])->name('admin.akun.update');
-Route::delete('/admin/akun/{id}', [AdminController::class, 'destroy'])->name('admin.akun.destroy');
+Route::put('/admin/akun/{id}', [AdminController::class, 'update'])->name('akun.update');
+Route::delete('/admin/akun/{id}', [AdminController::class, 'destroy'])->name('akun.destroy');
 
 // Rute setelah login untuk pengguna
 Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(function () {

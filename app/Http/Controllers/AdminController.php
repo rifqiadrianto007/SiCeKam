@@ -24,15 +24,13 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email|max:255',
         ]);
 
         $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
+        $user->update($request->only(['name', 'email']));
 
-        return redirect()->route('admin.akun')->with('success', 'Data pengguna berhasil diperbarui.');
+        return response()->json(['message' => 'Berhasil diupdate.']);
     }
 
     public function destroy($id)
@@ -40,6 +38,6 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('admin.akun')->with('success', 'Pengguna berhasil dihapus.');
+        return response()->json(['message' => 'Berhasil dihapus.']);
     }
 }
