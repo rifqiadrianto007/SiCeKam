@@ -107,7 +107,6 @@
                 </div>
             </div>
         </div>
-        </div>
 
         <script>
             // Add custom animation for pulse effect

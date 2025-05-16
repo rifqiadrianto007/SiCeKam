@@ -13,7 +13,7 @@
 </head>
 
 <body class="bg-gray-100">
-    <div class="flex min-h-screen">
+    <div class="flex">
         @include('components.sidebar-admin')
 
         <main>
