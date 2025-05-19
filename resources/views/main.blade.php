@@ -116,8 +116,19 @@
                             Dengan teknologi computer vision yang canggih, cukup ambil foto kandang dan sistem akan
                             menghitung jumlah ayam secara otomatis dengan akurasi tinggi.
                         </p>
-                        <a href="{{ route('scan') }}"
-                            class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group">
+                        {{-- Scan Jumlah Ayam --}}
+                        <a
+                            @auth
+                                href="{{ route('scan') }}"
+                            @endauth
+
+                            @guest
+                                href="{{ route('login') }}"
+                                onclick="alert('Silakan login terlebih dahulu untuk menggunakan fitur ini.')"
+                            @endguest
+
+                            class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group"
+                        >
                             <span>Coba Fitur Ini</span>
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="h-5 w-5 ml-2 transform transition group-hover:translate-x-1" viewBox="0 0 20 20"
@@ -144,8 +155,19 @@
                             Sistem cerdas yang dapat mendeteksi dan menganalisis kondisi kesehatan ayam berdasarkan ciri
                             fisik yang terlihat pada foto, membantu mencegah penyebaran penyakit.
                         </p>
-                        <a href="{{ route('penyakit') }}"
-                            class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group">
+                        {{-- Deteksi Penyakit --}}
+                        <a
+                            @auth
+                                href="{{ route('penyakit') }}"
+                            @endauth
+
+                            @guest
+                                href="{{ route('login') }}"
+                                onclick="alert('Silakan login terlebih dahulu untuk menggunakan fitur ini.')"
+                            @endguest
+
+                            class="text-indigo-600 font-medium inline-flex items-center hover:text-indigo-800 transition group"
+                        >
                             <span>Coba Fitur Ini</span>
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="h-5 w-5 ml-2 transform transition group-hover:translate-x-1" viewBox="0 0 20 20"

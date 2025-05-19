@@ -32,6 +32,7 @@
                     <span class="absolute -bottom-1 left-0 h-0.5 bg-indigo-600 transition-all"
                         :class="activeSection === 'home' ? 'w-full' : 'w-0 group-hover:w-full'"></span>
                 </a>
+
                 <a href="#fitur" class="relative group" @click="activeSection = 'fitur'"
                     :class="{ 'text-indigo-700': activeSection === 'fitur' }">
                     <span class="hover:text-indigo-700 transition">Fitur</span>
@@ -41,13 +42,22 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-4">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit"
-                        class="bg-red-600 text-white px-3 py-1 rounded-lg font-medium hover:opacity-90 transition">
-                        Logout
-                    </button>
-                </form>
+                @auth
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="bg-red-600 text-white px-3 py-1 rounded-lg font-medium hover:opacity-90 transition">
+                            Logout
+                        </button>
+                    </form>
+                @endauth
+
+                @guest
+                    <a href="{{ route('login') }}"
+                        class="bg-indigo-600 text-white px-3 py-1 rounded-lg font-medium hover:opacity-90 transition">
+                        Login
+                    </a>
+                @endguest
             </div>
         </div>
     </div>

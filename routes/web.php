@@ -6,8 +6,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\AdminController;
 
-// Halaman login dan register
 Route::get('/', function () {
+    return view('main');
+})->name('user.dashboard');
+// Halaman login dan register
+Route::get('/login', function () {
     return view('login');
 })->name('login.page');
 
@@ -21,9 +24,6 @@ Route::delete('/admin/akun/{id}', [AdminController::class, 'destroy'])->name('ak
 
 // Rute setelah login untuk pengguna
 Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(function () {
-    Route::get('/main', function () {
-        return view('main');
-    })->name('user.dashboard');
 
     Route::get('/scan', function () {
         return view('scan');

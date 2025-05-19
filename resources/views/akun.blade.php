@@ -62,7 +62,7 @@
                         </table>
                     </div>
 
-                    <div class="flex justify-between items-center mt-4">
+                    {{-- <div class="flex justify-between items-center mt-4">
                         <div class="text-sm text-gray-500">
                             Menampilkan <span id="displayedUsers">5</span> dari <span id="totalUsers">5</span> pengguna
                         </div>
@@ -76,7 +76,7 @@
                                 <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
