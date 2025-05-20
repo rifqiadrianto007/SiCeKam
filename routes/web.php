@@ -22,13 +22,13 @@ Route::get('/register', function () {
 Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(function () {
 
     Route::get('/scan', function () {
-        return view('scan');
+        return view('user.scan');
     })->name('scan');
 
     Route::post('/scan', [ScanController::class, 'store'])->name('scan.post');
 
     Route::get('/penyakit', function () {
-        return view('penyakit');
+        return view('user.penyakit');
     })->name('penyakit');
 });
 
@@ -40,15 +40,15 @@ Route::middleware(['auth', 'verified', RoleMiddleware::class . ':admin'])->group
     Route::delete('/admin/akun/{id}', [AdminController::class, 'destroy'])->name('akun.destroy');
 
     Route::get('/admin', function () {
-        return view('admin');
+        return view('admin.admin');
     })->name('admin.dashboard');
 
     Route::get('/ayam', function () {
-        return view('ayam');
+        return view('admin.ayam');
     })->name('ayam');
 
     Route::get('/akun', function () {
-        return view('akun');
+        return view('admin.akun');
     })->name('akun');
 });
 

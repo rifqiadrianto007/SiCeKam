@@ -11,7 +11,7 @@ class AdminController extends Controller
     public function akun()
     {
         $users = User::select('id', 'name', 'email')->get();
-        return view('akun', compact('users'));
+        return view('admin.akun', compact('users'));
     }
 
     public function edit($id)
