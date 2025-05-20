@@ -9,9 +9,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
 </head>
 
+<style>
+    ::-webkit-scrollbar{
+        display: none
+    }
+</style>
+
 <body class="bg-gray-50 text-gray-800 font-sans scrollbar-hide">
+
     <main>
         @yield('content')
     </main>
+
 </body>
 </html>

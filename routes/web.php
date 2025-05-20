@@ -18,10 +18,6 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-Route::get('/admin/akun', [AdminController::class, 'akun'])->name('admin.akun');
-Route::put('/admin/akun/{id}', [AdminController::class, 'update'])->name('akun.update');
-Route::delete('/admin/akun/{id}', [AdminController::class, 'destroy'])->name('akun.destroy');
-
 // Rute setelah login untuk pengguna
 Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(function () {
 
@@ -38,6 +34,11 @@ Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(
 
 // Rute untuk admin
 Route::middleware(['auth', 'verified', RoleMiddleware::class . ':admin'])->group(function () {
+
+    Route::get('/admin/akun', [AdminController::class, 'akun'])->name('admin.akun');
+    Route::put('/admin/akun/{id}', [AdminController::class, 'update'])->name('akun.update');
+    Route::delete('/admin/akun/{id}', [AdminController::class, 'destroy'])->name('akun.destroy');
+
     Route::get('/admin', function () {
         return view('admin');
     })->name('admin.dashboard');

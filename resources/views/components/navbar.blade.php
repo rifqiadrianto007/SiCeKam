@@ -3,7 +3,6 @@
     activeSection: 'home',
     sections: ['home', 'fitur'],
     init() {
-        // Set initial active section from URL hash
         if (window.location.hash) {
             this.activeSection = window.location.hash.substring(1);
         } else {
@@ -11,7 +10,6 @@
             window.history.replaceState(null, null, '#home');
         }
 
-        // Handle scroll events
         this.setupScrollHandler();
     },
     setupScrollHandler() {
@@ -57,7 +55,6 @@
 }" class="fixed top-0 left-0 right-0 w-full bg-white bg-opacity-50 backdrop-blur-sm z-50 shadow">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-            <!-- Logo dan nama -->
             <div class="flex items-center space-x-3">
                 <div class="flex items-center justify-center h-12 w-12">
                     <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo" class="h-10 w-auto" />
@@ -65,7 +62,6 @@
                 <span class="font-bold text-2xl">SiCekam</span>
             </div>
 
-            <!-- Menu navigasi -->
             <div class="hidden md:flex space-x-10 items-center font-medium">
                 <a href="#home" class="relative group"
                    @click.prevent="scrollTo('home')"
