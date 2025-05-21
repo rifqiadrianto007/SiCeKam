@@ -16,7 +16,7 @@
                     </div>
 
                     <!-- Search Box -->
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <div class="relative">
                             <input type="text" id="searchUser" placeholder="Cari pengguna..."
                                 class="w-full px-4 py-2 pl-10 pr-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400">
@@ -24,7 +24,7 @@
                                 <i class="fas fa-search"></i>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="overflow-x-auto">
                         <table class="min-w-full">

@@ -1,14 +1,13 @@
     @vite(['resources/css/app.css', 'resources/js/ayam.js'])
 
     @extends('layout.adm')
-    {{-- Main --}}
+
     @section('content')
         <div class="ml-64 p-6">
             <div class="mb-6">
                 <h1 class="text-2xl font-bold text-gray-800">Blok Kandang</h1>
             </div>
 
-            <!-- Distribusi Ayam per Blok Card -->
             <div class="bg-white rounded-lg shadow-sm mb-6">
                 <div class="p-6">
                     <div class="flex justify-between items-center mb-4">

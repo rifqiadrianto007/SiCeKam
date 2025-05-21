@@ -1,24 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
+    if (Auth::check() && Auth::user()->role === 'admin') {
+        return redirect()->route('admin.dashboard');
+    }
+
     return view('main');
 })->name('user.dashboard');
-// Halaman login dan register
+
 Route::get('/login', function () {
+    if (Auth::check()) {
+        return redirect()->back();
+    }
+
     return view('login');
 })->name('login.page');
+
 
 Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-// Rute setelah login untuk pengguna
+// Rute untuk pengguna
 Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(function () {
 
     Route::get('/scan', function () {
@@ -43,20 +53,11 @@ Route::middleware(['auth', 'verified', RoleMiddleware::class . ':admin'])->group
         return view('admin.admin');
     })->name('admin.dashboard');
 
-    Route::get('/ayam', function () {
-        return view('admin.ayam');
-    })->name('ayam');
-
-    Route::get('/akun', function () {
-        return view('admin.akun');
-    })->name('akun');
+    Route::get('/kandang', function () {
+        return view('admin.kandang');
+    })->name('kandang');
 });
 
-// Rute untuk login, register, dan logout
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-
-// Logout hanya bisa diakses oleh pengguna yang terautentikasi
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->middleware('auth')
-    ->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');

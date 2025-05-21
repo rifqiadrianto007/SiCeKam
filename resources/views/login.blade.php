@@ -12,16 +12,19 @@
 
 <body class="flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed"
     style="background-image: url('{{ Vite::asset('resources/images/kandang.png') }}')">
-    <!-- Background overlay with improved accessibility -->
     <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true"></div>
+
+    <a href="{{ route('user.dashboard') }}" class="absolute top-6 left-6 z-20 flex items-center justify-center w-10 h-10 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 shadow-lg transition-all hover:bg-white/20" aria-label="Kembali ke halaman utama">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+    </a>
 
     <!-- Login Card -->
     <div class="relative z-10 w-full max-w-md mx-4">
         <div
             class="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 overflow-hidden shadow-2xl">
-            <!-- Card content -->
             <div class="p-8">
-                <!-- Logo/Header with better semantic structure -->
                 <header class="flex flex-col items-center mb-8">
                     <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[#713fe5] to-[#4361ee] flex items-center justify-center mb-4 shadow-lg"
                         aria-hidden="true">
@@ -45,7 +48,6 @@
                         <p class="text-sm">{{ session('success') }}</p>
                     </div>
                 @endif
-                <!-- Form with proper attributes -->
                 <form class="space-y-5" action="{{ route('login') }}" method="POST" autocomplete="on">
                     @csrf
                     <div>

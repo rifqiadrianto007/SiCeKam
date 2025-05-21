@@ -1,3 +1,7 @@
+@php
+    $isAdmin = Auth::check() && Auth::user()->role === 'admin';
+@endphp
+
 <nav x-data="{
     isOpen: false,
     activeSection: 'home',
@@ -81,7 +85,9 @@
             </div>
 
             <div class="hidden md:flex items-center">
-                @auth
+                @if($isAdmin)
+                    {{-- Admin tidak menampilkan tombol login/logout di navbar ini --}}
+                @elseif(Auth::check())
                     <form action="{{ route('logout') }}" method="POST" class="ml-4">
                         @csrf
                         <button type="submit"
@@ -89,14 +95,12 @@
                             Logout
                         </button>
                     </form>
-                @endauth
-
-                @guest
+                @else
                     <a href="{{ route('login') }}"
-                       class="bg-indigo-600 text-white px-4 py-2 rounded-full font-medium hover:bg-indigo-700 transition">
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-full font-medium hover:bg-indigo-700 transition">
                         Login
                     </a>
-                @endguest
+                @endif
             </div>
         </div>
     </div>

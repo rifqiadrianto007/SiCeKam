@@ -7,7 +7,7 @@
     <meta name="description" content="Sistem Cek Kandang Ayam - Registration Page">
     <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
     <title>SiCekam</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/login.js'])
 </head>
 
 <body class="flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed"
@@ -27,7 +27,6 @@
                     <h1 class="text-2xl font-bold text-white">Sign Up</h1>
                 </header>
 
-                {{-- Alert Email Terpakai --}}
                 @if ($errors->any())
                     <div class="mb-6 p-4 bg-red-600/20 border border-red-500 text-red-200 rounded-lg space-y-1 text-sm">
                         @foreach ($errors->all() as $error)
@@ -90,6 +89,17 @@
                             <input id="password" name="password" type="password" required autocomplete="new-password"
                                 class="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#4361ee]/50 focus:border-[#4361ee]/50 transition"
                                 placeholder="Masukkan Password" aria-required="true">
+
+                            <button type="button" id="togglePassword"
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                aria-label="Toggle password visibility">
+                                <svg id="eyeIcon" class="h-5 w-5 text-white/50 hover:text-white transition"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M3.98 8.223A10.97 10.97 0 001.458 10C2.732 14.057 6.522 17 11 17c1.392 0 2.716-.262 3.924-.736l-1.625-1.625A4.978 4.978 0 0111 15a5 5 0 01-5-5c0-.872.223-1.69.615-2.403L3.98 8.223z" />
+                                    <path d="M19.293 19.293l-16-16 1.414-1.414 16 16-1.414 1.414z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
 
