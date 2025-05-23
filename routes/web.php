@@ -29,7 +29,7 @@ Route::get('/register', function () {
 })->name('register');
 
 // Rute untuk pengguna
-Route::middleware(['auth', 'verified', RoleMiddleware::class . ':user'])->group(function () {
+Route::middleware(['auth', RoleMiddleware::class . ':user'])->group(function () {
 
     Route::get('/scan', function () {
         return view('user.scan');
@@ -53,9 +53,10 @@ Route::middleware(['auth', 'verified', RoleMiddleware::class . ':admin'])->group
         return view('admin.admin');
     })->name('admin.dashboard');
 
-    Route::get('/kandang', function () {
-        return view('admin.kandang');
-    })->name('kandang');
+    Route::get('/admin/kandang', [ScanController::class, 'index'])->name('kandang.index');
+    Route::get('/admin/kandang/{id}/edit', [ScanController::class, 'edit']);
+    Route::put('/admin/kandang/{id}', [ScanController::class, 'update']);
+    Route::delete('/admin/kandang/{id}', [ScanController::class, 'destroy']);
 });
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');

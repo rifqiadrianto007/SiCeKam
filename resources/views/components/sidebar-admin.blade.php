@@ -31,7 +31,7 @@
 
             <!-- Blok Kandang -->
             <li class="menu-item">
-                <a href="{{ route('kandang') }}" id="kandang-link"
+                <a href="{{ route('kandang.index') }}" id="kandang-link"
                     class="relative flex items-center h-12 px-4 rounded-lg transition-colors duration-200 ease-in-out focus:outline-none hover:bg-white/10 {{ request()->routeIs('kandang*') ? 'active bg-white/20 border-r-4 border-white' : '' }}">
                     <span class="inline-flex justify-center items-center w-6">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-200" viewBox="0 0 20 20" fill="currentColor">

@@ -80,7 +80,6 @@
                 </div>
             </div>
         </div>
-        </div>
 
         <!-- Modal Edit Pengguna -->
         <div id="modalPengguna" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex hidden items-center justify-center">
