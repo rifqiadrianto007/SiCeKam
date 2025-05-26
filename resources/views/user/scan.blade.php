@@ -126,7 +126,7 @@
     <div class="split-container">
         <div class="blok-section" id="blok-section">
             <h2 class="blok-title">Pilih Blok Kandang</h2>
-            <x-PilihBlok />
+            <x-PilihBlok :bloks="$bloks" />
         </div>
 
         <div class="scan-section disabled-section" id="scan-section">

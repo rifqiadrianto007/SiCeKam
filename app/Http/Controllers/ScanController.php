@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Blok;
 use App\Models\Scan;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ScanController extends Controller
 {
@@ -79,5 +81,11 @@ class ScanController extends Controller
         $scan->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus.');
+    }
+
+    public function showScanForm()
+    {
+        $bloks = DB::table('scans')->distinct()->pluck('blok');
+        return view('user.scan', compact('bloks'));
     }
 }

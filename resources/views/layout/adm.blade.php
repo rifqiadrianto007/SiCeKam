@@ -11,11 +11,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </head>
 
-<body class="bg-gray-100">
-    <div class="flex">
+<style>
+    ::-webkit-scrollbar {
+        display: none
+    }
+</style>
+
+<body class="bg-gray-100 h-screen overflow-x-hidden">
+    <div class="flex h-screen">
         @include('components.sidebar-admin')
 
-        <main>
+        <main class="flex-1 overflow-auto">
             @yield('content')
         </main>
     </div>

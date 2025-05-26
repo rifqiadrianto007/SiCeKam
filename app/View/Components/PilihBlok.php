@@ -2,24 +2,18 @@
 
 namespace App\View\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class HalamanScan extends Component
+class PilihBlok extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $bloks;
+
+    public function __construct($bloks)
     {
-        //
+        $this->bloks = $bloks;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
+    public function render()
     {
         return view('components.PilihBlok');
     }

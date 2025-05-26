@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Scan;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -39,5 +41,41 @@ class AdminController extends Controller
         $user->delete();
 
         return response()->json(['message' => 'Berhasil dihapus.']);
+    }
+
+    public function storeBlok(Request $request)
+    {
+        $request->validate([
+            'blok' => 'required|string|max:10|unique:scans,blok',
+        ]);
+
+        Scan::create([
+            'blok' => $request->blok,
+            // kolom lain otomatis null
+        ]);
+
+        return redirect()->back()->with('success', 'Blok kandang berhasil ditambahkan.');
+    }
+
+public function dashboard()
+    {
+        // Ambil data
+        $totalBlok = DB::table('scans')->distinct('blok')->count('blok');
+        $totalAyam = DB::table('scans')->sum('jumlah_ayam');
+        $ayamSakit = DB::table('scans')->sum('ayam_sakit');
+
+        // Hitung persentase ayam sehat
+        $ayamSehat = $totalAyam - $ayamSakit;
+        $persentaseSehat = $totalAyam > 0 ? round(($ayamSehat / $totalAyam) * 100, 1) : 0;
+
+        // Distribusi ayam per blok
+        $distribusi = DB::table('scans')
+            ->select('blok', DB::raw('SUM(jumlah_ayam) as jumlah_ayam'))
+            ->groupBy('blok')
+            ->orderBy('blok')
+            ->get();
+
+        // Kirim ke view
+        return view('admin.admin', compact('totalBlok', 'totalAyam', 'ayamSakit', 'persentaseSehat', 'distribusi'));
     }
 }
