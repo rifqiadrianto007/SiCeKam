@@ -14,6 +14,15 @@
         </div>
     </div>
 
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-gray-700">Data Blok Kandang</h2>
+            <button id="btnTambahBlok"
+                class="bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg px-4 py-2 flex items-center">
+                <i class="fas fa-plus mr-2"></i>
+                Tambah Blok
+            </button>
+        </div>
+
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
@@ -201,7 +210,7 @@
 <div id="modalTambahBlok" class="fixed inset-0 z-50 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center hidden p-4">
     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
         <!-- Modal Header -->
-        <div class="bg-gradient-to-r from-green-500 to-emerald-600 p-6 rounded-t-2xl">
+        <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-t-2xl">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-3">
                     <div class="bg-white bg-opacity-20 p-2 rounded-lg">
@@ -224,8 +233,8 @@
                         <i class="fas fa-home text-gray-400 mr-2"></i>Nama Blok
                     </label>
                     <input type="text" name="blok" id="blok"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                        placeholder="Contoh: A, B, C atau A1, A2, dst..." required>
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="Contoh: A, B, C dst..." required>
                     <p class="text-xs text-gray-500 mt-1">Masukkan nama/kode untuk blok kandang</p>
                 </div>
 
@@ -236,7 +245,7 @@
                         Batal
                     </button>
                     <button type="submit"
-                        class="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all font-medium shadow-sm">
+                        class="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all font-medium shadow-sm">
                         <i class="fas fa-save mr-2"></i>Simpan Blok
                     </button>
                 </div>
