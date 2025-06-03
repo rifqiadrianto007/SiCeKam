@@ -228,6 +228,63 @@
             }
         }
 
+        // Tombol Tambah dan Simpan
+        document.getElementById('btn-tambah').addEventListener('click', async () => {
+            const jumlahAyam = parseInt(document.getElementById('jumlah-ayam').textContent);
+            if (!selectedClass) {
+                alert('Pilih blok terlebih dahulu.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/scan/tambah`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        blok: selectedClass,
+                        jumlah_ayam: jumlahAyam
+                    })
+                });
+
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                console.error(error);
+                alert('Gagal menambah data.');
+            }
+        });
+
+        document.getElementById('btn-simpan').addEventListener('click', async () => {
+            const jumlahAyam = parseInt(document.getElementById('jumlah-ayam').textContent);
+            if (!selectedClass) {
+                alert('Pilih blok terlebih dahulu.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/scan/simpan`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        blok: selectedClass,
+                        jumlah_ayam: jumlahAyam
+                    })
+                });
+
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                console.error(error);
+                alert('Gagal menyimpan data.');
+            }
+        });
+
         // Camera
         openCameraBtn.addEventListener('click', async function() {
             try {

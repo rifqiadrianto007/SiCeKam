@@ -39,6 +39,9 @@ Route::middleware(['auth', RoleMiddleware::class . ':user'])->group(function () 
 
     Route::post('/scan', [ScanController::class, 'store'])->name('scan.post');
 
+    Route::post('/scan/tambah', [ScanController::class, 'tambahJumlah']);
+    Route::post('/scan/simpan', [ScanController::class, 'simpanJumlah']);
+
     Route::get('/penyakit', function () {
         return view('user.penyakit');
     })->name('penyakit');

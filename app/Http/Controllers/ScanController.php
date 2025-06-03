@@ -88,4 +88,39 @@ class ScanController extends Controller
         $bloks = DB::table('scans')->distinct()->pluck('blok');
         return view('user.scan', compact('bloks'));
     }
+
+    public function tambahJumlah(Request $request)
+    {
+        $validated = $request->validate([
+            'blok' => 'required|string',
+            'jumlah_ayam' => 'required|integer',
+        ]);
+
+        $scan = Scan::firstOrCreate(['blok' => $validated['blok']]);
+        $scan->jumlah_ayam = ($scan->jumlah_ayam ?? 0) + $validated['jumlah_ayam'];
+        $scan->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Jumlah ayam berhasil ditambahkan.'
+        ]);
+    }
+
+    public function simpanJumlah(Request $request)
+    {
+        $validated = $request->validate([
+            'blok' => 'required|string',
+            'jumlah_ayam' => 'required|integer',
+        ]);
+
+        $scan = Scan::updateOrCreate(
+            ['blok' => $validated['blok']],
+            ['jumlah_ayam' => $validated['jumlah_ayam']]
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Jumlah ayam berhasil disimpan.'
+        ]);
+    }
 }
