@@ -9,11 +9,9 @@
                 <h1 class="text-3xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
                     Dashboard Peternakan
                 </h1>
-                <p class="text-slate-500 text-sm">Kelola dan pantau peternakan ayam Anda</p>
             </div>
         </div>
 
-        <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-center">
@@ -64,12 +62,10 @@
         </div>
 
 
-        <!-- Chart Section dengan desain premium -->
         <div class="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl border border-white/20 p-8 hover:shadow-2xl transition-all duration-300">
             <div class="flex items-center justify-between mb-6">
                 <div class="space-y-1">
                     <h2 class="text-2xl font-bold text-slate-800">Distribusi Ayam per Blok</h2>
-                    <p class="text-slate-500 text-sm">Analisis distribusi populasi</p>
                 </div>
             </div>
 
@@ -78,7 +74,6 @@
                     <canvas id="distributionChart"></canvas>
                 </div>
 
-                <!-- Chart Overlay untuk efek premium -->
                 <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
                     <div class="w-full h-full bg-gradient-to-t from-white/5 to-transparent rounded-2xl"></div>
                 </div>
@@ -86,7 +81,6 @@
         </div>
     </div>
 
-    <!-- Enhanced Chart.js Script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Animasi loading

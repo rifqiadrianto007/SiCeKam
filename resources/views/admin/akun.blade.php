@@ -1,23 +1,19 @@
 @vite(['resources/css/app.css', 'resources/js/akun.js'])
 
 @extends('layout.adm')
-{{-- Main --}}
+
 @section('content')
     <div class="ml-64 p-8 bg-gray-50 min-h-screen">
-        <!-- Header Section -->
         <div class="mb-8">
             <div class="flex items-center space-x-3 mb-2">
                 <div>
                     <h1 class="text-3xl font-bold text-gray-900">Manajemen Pengguna</h1>
-                    <p class="text-gray-600 text-sm">Kelola data pengguna sistem</p>
                 </div>
             </div>
         </div>
 
-        <!-- User Management Card -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
 
-            <!-- Table Container -->
             <div class="overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -54,7 +50,6 @@
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm font-semibold text-gray-900">{{ $user->name }}</div>
-                                                <div class="text-sm text-gray-500">ID: {{ $user->id }}</div>
                                             </div>
                                         </div>
                                     </td>
@@ -89,8 +84,7 @@
     <!-- Modal Edit Pengguna -->
     <div id="modalPengguna" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex hidden items-center justify-center z-50 p-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
-            <!-- Modal Header -->
-            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-t-2xl">
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 rounded-t-2xl">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center space-x-3">
                         <div class="bg-white bg-opacity-20 p-2 rounded-lg">
@@ -104,7 +98,6 @@
                 </div>
             </div>
 
-            <!-- Modal Body -->
             <div class="p-8">
                 <form id="formPengguna">
                     <input type="hidden" id="penggunaId">
@@ -129,7 +122,6 @@
                         </div>
                     </div>
 
-                    <!-- Modal Footer -->
                     <div class="flex justify-end space-x-3 mt-8 pt-6 border-t border-gray-200">
                         <button type="button" id="btnCancel"
                             class="px-6 py-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors font-medium">
@@ -148,7 +140,6 @@
     <!-- Modal Konfirmasi Hapus -->
     <div id="modalKonfirmasi" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex hidden items-center justify-center z-50 p-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm transform transition-all">
-            <!-- Modal Header -->
             <div class="p-6 text-center">
                 <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
                     <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
@@ -157,7 +148,6 @@
                 <p class="text-gray-600">Apakah Anda yakin ingin menghapus pengguna ini? Tindakan ini tidak dapat dibatalkan.</p>
             </div>
 
-            <!-- Modal Footer -->
             <div class="flex space-x-3 p-6 pt-0">
                 <button id="btnBatalHapus"
                     class="flex-1 px-4 py-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors font-medium">

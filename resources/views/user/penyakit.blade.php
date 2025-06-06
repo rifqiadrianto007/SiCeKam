@@ -1,5 +1,3 @@
-@vite(['resources/css/app.css'])
-
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -168,7 +166,6 @@
         const scanSection = document.getElementById('scan-section');
         const statusAyam = document.getElementById('status-ayam');
 
-        // Pemilihan kelas
         function selectClass(className) {
             if (selectedClass === className) return;
 
@@ -232,9 +229,11 @@
                     if (data.status === 'sakit') {
                         statusAyam.classList.add('status-sakit');
                         statusAyam.classList.remove('status-sehat');
+                        toggleSickButton(true);
                     } else {
                         statusAyam.classList.add('status-sehat');
                         statusAyam.classList.remove('status-sakit');
+                        toggleSickButton(false);
                     }
                 } else {
                     alert('Deteksi gagal: ' + (data.error || 'Unknown error'));
@@ -244,6 +243,47 @@
                 console.error('Gagal mengirim ke API Flask:', error);
                 alert('Terjadi kesalahan saat menghubungi server Flask.');
                 resetProcess();
+            }
+        }
+
+        // Tombol Tambah
+        document.getElementById('btn-tambah').addEventListener('click', async () => {
+            if (!selectedClass) {
+                alert('Pilih blok terlebih dahulu.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/penyakit/tambah`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        blok: selectedClass,
+                        ayam_sakit: 1
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Ayam sakit berhasil ditambahkan');
+                    document.getElementById('btn-tambah').style.display = 'none'; // Hanya sekali klik
+                } else {
+                    alert(result.message || 'Gagal menambah data ayam sakit');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Terjadi kesalahan saat menambah ayam sakit');
+            }
+        });
+
+        // Fungsi untuk menampilkan/menyembunyikan tombol berdasarkan status ayam
+        function toggleSickButton(isSick) {
+            const btnSakit = document.getElementById('btn-tambah');
+            if (btnSakit) {
+                btnSakit.style.display = isSick ? 'block' : 'none';
             }
         }
 

@@ -1,5 +1,3 @@
-@vite(['resources/css/app.css'])
-
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -159,7 +157,6 @@
         const blokSection = document.getElementById('blok-section');
         const scanSection = document.getElementById('scan-section');
 
-        // Pemilihan kelas
         function selectClass(className) {
             if (selectedClass === className) return;
 
@@ -251,6 +248,10 @@
 
                 const result = await response.json();
                 alert(result.message);
+
+                document.getElementById('btn-tambah').style.display = 'none';
+                document.getElementById('btn-simpan').style.display = 'none';
+
             } catch (error) {
                 console.error(error);
                 alert('Gagal menambah data.');
@@ -273,19 +274,23 @@
                     },
                     body: JSON.stringify({
                         blok: selectedClass,
-                        jumlah_ayam: jumlahAyam
+                        jumlah_ayam: jumlahAyam,
                     })
                 });
 
                 const result = await response.json();
                 alert(result.message);
+
+                document.getElementById('btn-tambah').style.display = 'none';
+                document.getElementById('btn-simpan').style.display = 'none';
+
             } catch (error) {
                 console.error(error);
                 alert('Gagal menyimpan data.');
             }
         });
 
-        // Camera
+        // Kamera
         openCameraBtn.addEventListener('click', async function() {
             try {
                 dropArea.classList.add('hidden');

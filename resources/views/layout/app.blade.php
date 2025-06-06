@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
     <title>SiCekam</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
+    @vite(['resources/css/app.css'])
 </head>
 
 <style>

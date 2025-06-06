@@ -4,12 +4,10 @@
 
 @section('content')
 <div class="ml-64 p-8 bg-gray-50 min-h-screen">
-    <!-- Header Section -->
     <div class="mb-8">
         <div class="flex items-center space-x-3 mb-2">
             <div>
                 <h1 class="text-3xl font-bold text-gray-900">Blok Kandang</h1>
-                <p class="text-gray-600 text-sm">Kelola data blok kandang dan monitoring ayam</p>
             </div>
         </div>
     </div>
@@ -23,60 +21,8 @@
             </button>
         </div>
 
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
-            <div class="flex items-center">
-                <div class="bg-blue-100 p-3 rounded-full">
-                    <i class="fas fa-home text-blue-600 text-lg"></i>
-                </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Total Blok</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ count($scans) }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
-            <div class="flex items-center">
-                <div class="bg-purple-100 p-3 rounded-full">
-                    <i class="fas fa-kiwi-bird text-purple-500 text-lg"></i>
-                </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Total Ayam</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ $scans->sum('jumlah_ayam') }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
-            <div class="flex items-center">
-                <div class="bg-red-100 p-3 rounded-full">
-                    <i class="fas fa-exclamation-triangle text-red-600 text-lg"></i>
-                </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Ayam Sakit</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ $scans->sum('ayam_sakit') }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
-            <div class="flex items-center">
-                <div class="bg-yellow-100 p-3 rounded-full">
-                    <i class="fas fa-chart-line text-yellow-600 text-lg"></i>
-                </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Tingkat Kesehatan</p>
-                    <p class="text-2xl font-bold text-gray-900">
-                        {{ $scans->sum('jumlah_ayam') > 0 ? number_format((($scans->sum('jumlah_ayam') - $scans->sum('ayam_sakit')) / $scans->sum('jumlah_ayam')) * 100, 1) : 0 }}%
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content Card -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
 
-        <!-- Table Container -->
         <div class="overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -126,7 +72,6 @@
                                         </div>
                                         <div class="ml-4">
                                             <div class="text-sm font-semibold text-gray-900">Blok {{ $scan->blok }}</div>
-                                            <div class="text-sm text-gray-500">ID: {{ $scan->id }}</div>
                                         </div>
                                     </div>
                                 </td>
@@ -209,7 +154,7 @@
 <!-- Modal Tambah Blok -->
 <div id="modalTambahBlok" class="fixed inset-0 z-50 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center hidden p-4">
     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
-        <!-- Modal Header -->
+
         <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-t-2xl">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-3">
@@ -224,7 +169,6 @@
             </div>
         </div>
 
-        <!-- Modal Body -->
         <div class="p-8">
             <form action="{{ route('blok.store') }}" method="POST">
                 @csrf
@@ -235,10 +179,8 @@
                     <input type="text" name="blok" id="blok"
                         class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                         placeholder="Contoh: A, B, C dst..." required>
-                    <p class="text-xs text-gray-500 mt-1">Masukkan nama/kode untuk blok kandang</p>
                 </div>
 
-                <!-- Modal Footer -->
                 <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
                     <button type="button" onclick="tutupModal()"
                         class="px-6 py-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors font-medium">
@@ -258,7 +200,6 @@
 <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden z-50 p-4">
     <div class="flex items-center justify-center min-h-screen">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full transform transition-all">
-            <!-- Modal Header -->
             <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 rounded-t-2xl">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center space-x-3">
@@ -273,7 +214,6 @@
                 </div>
             </div>
 
-            <!-- Modal Body -->
             <div class="p-8">
                 <form id="editForm" method="POST">
                     @csrf
@@ -350,6 +290,17 @@ function editBlok(id) {
 function closeEditModal() {
     document.getElementById('editModal').classList.add('hidden');
 }
+
+// Validasi: Ayam sakit tidak boleh lebih dari jumlah ayam
+document.getElementById('editAyamSakit').addEventListener('input', function () {
+    const jumlahAyam = parseInt(document.getElementById('editJumlahAyam').value) || 0;
+    const ayamSakit = parseInt(this.value) || 0;
+
+    if (ayamSakit > jumlahAyam) {
+        alert('Jumlah ayam sakit tidak boleh melebihi jumlah ayam!');
+        this.value = jumlahAyam;
+    }
+});
 
 function deleteBlok(id) {
     // Create custom confirmation modal content
