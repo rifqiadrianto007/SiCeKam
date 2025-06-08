@@ -157,6 +157,20 @@
         const blokSection = document.getElementById('blok-section');
         const scanSection = document.getElementById('scan-section');
 
+        function toggleButtons() {
+            const jumlahAyam = parseInt(document.getElementById('jumlah-ayam').textContent) || 0;
+            const btnTambah = document.getElementById('btn-tambah');
+            const btnSimpan = document.getElementById('btn-simpan');
+
+            if (jumlahAyam > 0) {
+                btnTambah.style.display = 'inline-block';
+                btnSimpan.style.display = 'inline-block';
+            } else {
+                btnTambah.style.display = 'none';
+                btnSimpan.style.display = 'none';
+            }
+        }
+
         function selectClass(className) {
             if (selectedClass === className) return;
 
@@ -217,6 +231,8 @@
                     const hasilDeteksi = JSON.parse(data.results);
                     const jumlahAyam = hasilDeteksi.length;
                     document.getElementById('jumlah-ayam').textContent = jumlahAyam;
+
+                    toggleButtons();
                 }
             } catch (error) {
                 console.error('Gagal mengirim ke API Flask:', error);
@@ -378,9 +394,10 @@
             step2Text.classList.remove('text-primary');
             fileUpload.value = '';
             currentImageRotation = 0;
+            document.getElementById('jumlah-ayam').textContent = '0';
+            toggleButtons();
         }
 
-        // Drag and drop
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, preventDefaults, false);
         });
@@ -405,6 +422,8 @@
                 fileUpload.dispatchEvent(new Event('change'));
             }
         });
+
+        toggleButtons();
     </script>
 </body>
 @endsection

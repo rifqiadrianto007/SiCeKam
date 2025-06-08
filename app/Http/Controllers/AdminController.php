@@ -12,7 +12,10 @@ class AdminController extends Controller
 {
     public function akun()
     {
-        $users = User::select('id', 'name', 'email')->get();
+        $users = User::select('id', 'name', 'email')
+                    ->where('role', '!=', 'admin')
+                    ->get();
+
         return view('admin.akun', compact('users'));
     }
 
@@ -46,36 +49,40 @@ class AdminController extends Controller
     public function storeBlok(Request $request)
     {
         $request->validate([
-            'blok' => 'required|string|max:10|unique:scans,blok',
+            'blok' => 'required|string|max:10',
         ]);
+
+        $existingBlok = Scan::where('blok', $request->blok)->first();
+
+        if ($existingBlok) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Blok kandang "'.$request->blok.'" sudah ada!');
+        }
 
         Scan::create([
             'blok' => $request->blok,
-            // kolom lain otomatis null
         ]);
 
-        return redirect()->back()->with('success', 'Blok kandang berhasil ditambahkan.');
+        return redirect()->back()
+            ->with('success', 'Blok kandang "'.$request->blok.'" berhasil ditambahkan.');
     }
 
 public function dashboard()
     {
-        // Ambil data
         $totalBlok = DB::table('scans')->distinct('blok')->count('blok');
         $totalAyam = DB::table('scans')->sum('jumlah_ayam');
         $ayamSakit = DB::table('scans')->sum('ayam_sakit');
 
-        // Hitung persentase ayam sehat
         $ayamSehat = $totalAyam - $ayamSakit;
         $persentaseSehat = $totalAyam > 0 ? round(($ayamSehat / $totalAyam) * 100, 1) : 0;
 
-        // Distribusi ayam per blok
         $distribusi = DB::table('scans')
             ->select('blok', DB::raw('SUM(jumlah_ayam) as jumlah_ayam'))
             ->groupBy('blok')
             ->orderBy('blok')
             ->get();
 
-        // Kirim ke view
         return view('admin.admin', compact('totalBlok', 'totalAyam', 'ayamSakit', 'persentaseSehat', 'distribusi'));
     }
 }

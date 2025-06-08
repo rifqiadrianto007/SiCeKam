@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ScanController extends Controller
 {
-    // Simpan hasil scan
     public function store(Request $request)
     {
         $request->validate([
@@ -21,11 +20,9 @@ class ScanController extends Controller
             'is_sick'       => 'nullable|boolean',
         ]);
 
-        // Simpan gambar ke storage
         $path = $request->file('image')->store('public/scan');
         $publicPath = Storage::url($path);
 
-        // Cari atau buat data scan berdasarkan blok
         $scan = Scan::firstOrNew(['blok' => $request->blok]);
 
         if ($request->scan_type === 'jumlah') {
@@ -42,21 +39,18 @@ class ScanController extends Controller
             ->with('image', $publicPath);
     }
 
-    // Menampilkan semua data
     public function index()
     {
-        $scans = Scan::all(); // Ambil semua data scan
+        $scans = Scan::all();
         return view('admin.kandang', compact('scans'));
     }
 
-    // Ambil data scan untuk edit
     public function edit($id)
     {
         $scan = Scan::findOrFail($id);
-        return response()->json($scan); // Untuk ditangani di modal/edit frontend
+        return response()->json($scan);
     }
 
-    // Update data scan
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -74,7 +68,6 @@ class ScanController extends Controller
         return redirect()->back()->with('success', 'Data berhasil diupdate.');
     }
 
-    // Hapus data scan
     public function destroy($id)
     {
         $scan = Scan::findOrFail($id);

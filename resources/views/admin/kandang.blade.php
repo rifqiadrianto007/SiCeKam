@@ -12,6 +12,18 @@
         </div>
     </div>
 
+    @if (session('success'))
+        <div class="mb-4 px-4 py-3 bg-green-100 text-green-800 rounded-lg border border-green-300">
+            <strong>Berhasil!</strong> {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="mb-4 px-4 py-3 bg-red-100 text-red-800 rounded-lg border border-red-300">
+            <strong>Gagal!</strong> {{ session('error') }}
+        </div>
+    @endif
+
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold text-gray-700">Data Blok Kandang</h2>
             <button id="btnTambahBlok"
