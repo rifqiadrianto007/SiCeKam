@@ -10,7 +10,7 @@ import time
 app = Flask(__name__)
 CORS(app, origins=["http://127.0.0.1:8000", "http://localhost:8000"])
 
-model = YOLO("D:/Kuliah/SEMESTER 4/ADPL/AI SiCeKam/best.pt")
+model = YOLO("D:/Kuliah/SEMESTER 4/ADPL/AI SiCeKam/best.pt") # Ganti dengan path model YOLO Anda
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -35,7 +35,7 @@ def predict():
     yolo_output_path = os.path.join(output_dir_yolo, original_image_name)
 
     # Tujuan ke folder Laravel
-    laravel_output_dir = 'D:/laragon/www/Project_SiCeKam/storage/app/public/scan'
+    laravel_output_dir = 'D:/laragon/www/Project_SiCeKam/storage/app/public/scan' # Ganti dengan path folder Laravel Anda
     os.makedirs(laravel_output_dir, exist_ok=True)
 
     # Path file yang akan disimpan di Laravel
